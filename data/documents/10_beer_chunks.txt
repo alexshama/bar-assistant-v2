@@ -1,0 +1,125 @@
+[CHUNK]
+id: BEER_DEF_001
+tags: beer, basics, definition
+keywords: пиво, что такое пиво, определение пива, beer
+text: Пиво — ферментированный напиток на основе воды, солода (чаще ячмень), хмеля и дрожжей. Для стиля важны: цвет (SRM/EBC), горечь (IBU), крепость (ABV), плотность/тело, профиль брожения (эли/лагеры), аромат солода и хмеля, а также дрожжевые ноты (эфиры/фенолы).
+[CHUNK]
+id: BEER_FAMILIES_002
+tags: beer, basics, classification
+keywords: эли и лагеры, низовое брожение, верховое брожение, спонтанное брожение
+text: Семейства пива: лагеры (низовое брожение) обычно чище и «хрустящие», подаются холоднее; эли (верховое брожение) чаще дают фруктовые/пряные ноты и больше разнообразия; спонтанное/смешанное брожение (ламбик и др.) — кислинка, «фанк» и сложные ароматы.
+[CHUNK]
+id: BEER_COLOR_GUIDE_003
+tags: beer, basics, color_flavor
+keywords: цвет пива, светлое пиво, янтарное пиво, тёмное пиво
+text: Цвет и вкус (упрощённо): светлое — хлебность/солодовая сладость, хмель от травянистого до цитруса; янтарное/медное — карамель, тост, орех; тёмное — кофе, шоколад, жареный солод и иногда сухость от обжарки.
+[CHUNK]
+id: BEER_STYLE_001_PILSNER
+tags: beer, style, lager
+keywords: пилснер, pilsner, пилснер вкус, пилснер цвет, марки пилснер
+text: Стиль: Пилснер. Цвет: светло‑золотой. Вкус: сухой, хмелевая горечь (травы/специи), чистый финиш. Отличия: Более выраженный хмель и горечь, чем у обычного светлого лагера. Примеры марок/ориентиров: Pilsner Urquell, Bitburger, Warsteiner, Jever.
+[CHUNK]
+id: BEER_STYLE_002_HELLES
+tags: beer, style, lager
+keywords: helles (баварский), helles, helles (баварский) вкус, helles (баварский) цвет, марки helles (баварский)
+text: Стиль: Helles (баварский). Цвет: светло‑золотой. Вкус: мягкий солод, хлебность, низкая‑средняя горечь. Отличия: Меньше хмеля и горечи, чем у пилснера; максимально мягкий лагер. Примеры марок/ориентиров: Augustiner Helles, Paulaner Münchner Hell, Hofbräu Original, Weihenstephaner Helles.
+[CHUNK]
+id: BEER_STYLE_003_VIENNA_LAGER
+tags: beer, style, lager
+keywords: vienna lager (венский), vienna_lager, vienna lager (венский) вкус, vienna lager (венский) цвет, марки vienna lager (венский)
+text: Стиль: Vienna Lager (венский). Цвет: янтарный. Вкус: карамель/тост, чистое брожение, умеренная горечь. Отличия: Более солодовый и медный, чем helles/pils. Примеры марок/ориентиров: Dos Equis Ambar, локальные Vienna Lager.
+[CHUNK]
+id: BEER_STYLE_004_MARZEN_OKTOBERFEST
+tags: beer, style, lager
+keywords: märzen / oktoberfest, marzen_oktoberfest, märzen / oktoberfest вкус, märzen / oktoberfest цвет, марки märzen / oktoberfest
+text: Стиль: Märzen / Oktoberfest. Цвет: золотой‑янтарный. Вкус: солод, тост, округлое тело, сбалансированная горечь. Отличия: Праздничный солодовый профиль, часто сезонный выпуск. Примеры марок/ориентиров: Paulaner Oktoberfestbier, Spaten Oktoberfest, Hacker‑Pschorr Oktoberfest, Ayinger Oktober Fest‑Märzen.
+[CHUNK]
+id: BEER_STYLE_005_DUNKEL
+tags: beer, style, lager
+keywords: dunkel (тёмный лагер), dunkel, dunkel (тёмный лагер) вкус, dunkel (тёмный лагер) цвет, марки dunkel (тёмный лагер)
+text: Стиль: Dunkel (тёмный лагер). Цвет: коричневый. Вкус: хлеб, карамель, орех, лёгкий кофе; горечь низкая. Отличия: Тёмный лагер без жёсткой «жарености» стаутов. Примеры марок/ориентиров: Ayinger Dunkel, Hofbräu Dunkel.
+[CHUNK]
+id: BEER_STYLE_006_BOCK
+tags: beer, style, lager
+keywords: bock / doppelbock, bock, bock / doppelbock вкус, bock / doppelbock цвет, марки bock / doppelbock
+text: Стиль: Bock / Doppelbock. Цвет: янтарный‑тёмный. Вкус: плотный солод, карамель, сухофрукты; крепость выше среднего. Отличия: Более крепкий и насыщенный лагер, «согревающий». Примеры марок/ориентиров: Einbecker Ur‑Bock, Ayinger Celebrator, Paulaner Salvator.
+[CHUNK]
+id: BEER_STYLE_007_SCHWARZBIER
+tags: beer, style, lager
+keywords: schwarzbier, schwarzbier, schwarzbier вкус, schwarzbier цвет, марки schwarzbier
+text: Стиль: Schwarzbier. Цвет: чёрный. Вкус: лёгкий кофе/шоколад, сухость, чистый лагерный финиш. Отличия: «Чёрное, но лёгкое»: меньше сладости и тела, чем у портера/стаута. Примеры марок/ориентиров: Köstritzer Schwarzbier, Mönchshof Schwarzbier.
+[CHUNK]
+id: BEER_STYLE_008_PALE_ALE
+tags: beer, style, ale
+keywords: pale ale, pale_ale, pale ale вкус, pale ale цвет, марки pale ale
+text: Стиль: Pale Ale. Цвет: золотой‑янтарный. Вкус: солод + заметный хмель (цитрус/хвоя), умеренная горечь. Отличия: Более сбалансирован и мягче, чем IPA. Примеры марок/ориентиров: Sierra Nevada Pale Ale, локальные APA.
+[CHUNK]
+id: BEER_STYLE_009_IPA
+tags: beer, style, ale
+keywords: ipa, ipa, ipa вкус, ipa цвет, марки ipa
+text: Стиль: IPA. Цвет: светлый‑янтарный. Вкус: выраженный хмель, горечь средняя‑высокая. Отличия: Хмель — главный; интенсивнее, чем pale ale. Примеры марок/ориентиров: Lagunitas IPA, Stone IPA, BrewDog Punk IPA.
+[CHUNK]
+id: BEER_STYLE_010_NEIPA
+tags: beer, style, ale
+keywords: neipa / hazy ipa, neipa, neipa / hazy ipa вкус, neipa / hazy ipa цвет, марки neipa / hazy ipa
+text: Стиль: NEIPA / Hazy IPA. Цвет: светлый, мутный. Вкус: сочный тропический/цитрус, горечь мягче, тело бархатистое. Отличия: Меньше резкой горечи; часто овёс/пшеница для текстуры. Примеры марок/ориентиров: Tree House (ориентир), Trillium (ориентир), локальные Hazy IPA.
+[CHUNK]
+id: BEER_STYLE_011_HEFEWEIZEN
+tags: beer, style, ale
+keywords: hefeweizen (вайцен), hefeweizen, hefeweizen (вайцен) вкус, hefeweizen (вайцен) цвет, марки hefeweizen (вайцен)
+text: Стиль: Hefeweizen (вайцен). Цвет: светлый, мутный. Вкус: банан/гвоздика, мягкое тело, низкая горечь. Отличия: Дрожжевой профиль (банан‑гвоздика) + пшеничная мягкость. Примеры марок/ориентиров: Weihenstephaner Hefeweissbier, Paulaner Hefe‑Weißbier, Erdinger Weissbier, Franziskaner.
+[CHUNK]
+id: BEER_STYLE_012_WITBIER
+tags: beer, style, ale
+keywords: witbier (бельгийское белое), witbier, witbier (бельгийское белое) вкус, witbier (бельгийское белое) цвет, марки witbier (бельгийское белое)
+text: Стиль: Witbier (бельгийское белое). Цвет: очень светлый, мутный. Вкус: цитрус/кориандр, освежающее, мягкая кислотность. Отличия: Специи (кориандр/цедра), обычно легче и «цитрусовее» вайцена. Примеры марок/ориентиров: Hoegaarden, Blanche de Bruxelles, St. Bernardus Wit.
+[CHUNK]
+id: BEER_STYLE_013_BELGIAN_TRAPPIST
+tags: beer, style, ale
+keywords: belgian blonde/dubbel/tripel, belgian_trappist, belgian blonde/dubbel/tripel вкус, belgian blonde/dubbel/tripel цвет, марки belgian blonde/dubbel/tripel
+text: Стиль: Belgian Blonde/Dubbel/Tripel. Цвет: blonde‑янтарный. Вкус: дрожжевая фруктовость/пряность; dubbel — сухофрукты/карамель; tripel — крепче и суше. Отличия: Характер бельгийских дрожжей + часто повышенная крепость у tripel. Примеры марок/ориентиров: Leffe Blonde/Dubbel, Westmalle Dubbel/Tripel, Tripel Karmeliet, Chimay (разные).
+[CHUNK]
+id: BEER_STYLE_014_SAISON
+tags: beer, style, ale
+keywords: saison, saison, saison вкус, saison цвет, марки saison
+text: Стиль: Saison. Цвет: золотой. Вкус: сухой, пряный, лёгкая фруктовость, высокая питкость. Отличия: «Фермерский» сухой эль, хорошо летом. Примеры марок/ориентиров: Saison Dupont, локальные saison.
+[CHUNK]
+id: BEER_STYLE_015_AMBER_RED_ALE
+tags: beer, style, ale
+keywords: amber/red ale, amber_red_ale, amber/red ale вкус, amber/red ale цвет, марки amber/red ale
+text: Стиль: Amber/Red Ale. Цвет: янтарный‑красный. Вкус: карамель, тост, умеренная горечь. Отличия: Более карамельный солодовый профиль. Примеры марок/ориентиров: Smithwick’s, локальные amber/red ale.
+[CHUNK]
+id: BEER_STYLE_016_PORTER
+tags: beer, style, dark_ale
+keywords: porter, porter, porter вкус, porter цвет, марки porter
+text: Стиль: Porter. Цвет: тёмно‑коричневый. Вкус: шоколад, кофе, карамель, умеренная горечь. Отличия: Часто «шоколаднее» и мягче стаута. Примеры марок/ориентиров: Fuller’s London Porter, локальные porter.
+[CHUNK]
+id: BEER_STYLE_017_DRY_STOUT
+tags: beer, style, dark_ale
+keywords: dry stout, dry_stout, dry stout вкус, dry stout цвет, марки dry stout
+text: Стиль: Dry Stout. Цвет: чёрный. Вкус: жареный солод, кофе, сухой финиш. Отличия: Более сухой и жареный, классика — dry stout. Примеры марок/ориентиров: Guinness Draught, Murphy’s, Beamish.
+[CHUNK]
+id: BEER_STYLE_018_IMPERIAL_STOUT
+tags: beer, style, dark_ale
+keywords: imperial stout, imperial_stout, imperial stout вкус, imperial stout цвет, марки imperial stout
+text: Стиль: Imperial Stout. Цвет: чёрный. Вкус: очень плотный: шоколад/кофе/сухофрукты; крепость высокая. Отличия: Мощный «десертный» стиль; часто бывает выдержка в бочке. Примеры марок/ориентиров: Old Rasputin, локальные imperial stout.
+[CHUNK]
+id: BEER_STYLE_019_BERLINER_WEISSE
+tags: beer, style, sour
+keywords: berliner weisse, berliner_weisse, berliner weisse вкус, berliner weisse цвет, марки berliner weisse
+text: Стиль: Berliner Weisse. Цвет: светлый. Вкус: лёгкая молочная кислинка, очень освежающее. Отличия: Ощущается как «кислый пшеничный лимонад». Примеры марок/ориентиров: Berliner Kindl Weisse, локальные berliner.
+[CHUNK]
+id: BEER_STYLE_020_GOSE
+tags: beer, style, sour
+keywords: gose, gose, gose вкус, gose цвет, марки gose
+text: Стиль: Gose. Цвет: светлый. Вкус: кислинка + лёгкая солоноватость, иногда кориандр. Отличия: Солёный оттенок на кислой базе. Примеры марок/ориентиров: Ritterguts Gose, локальные gose.
+[CHUNK]
+id: BEER_STYLE_021_LAMBIC_GUEUZE
+tags: beer, style, sour
+keywords: lambic/gueuze, lambic_gueuze, lambic/gueuze вкус, lambic/gueuze цвет, марки lambic/gueuze
+text: Стиль: Lambic/Gueuze. Цвет: золотой‑янтарный. Вкус: сложная кислинка, «фанк», сухость. Отличия: Спонтанное брожение и выдержка, очень характерные ароматы. Примеры марок/ориентиров: Cantillon, Boon, Timmermans, Lindemans (часть ассортимента).
+[CHUNK]
+id: BEER_QUICK_PICK_999
+tags: beer, bartending, recommendation
+keywords: подобрать пиво, какое пиво выбрать, не горькое пиво, горькое пиво, кислое пиво, тёмное не сладкое
+text: Быстрый выбор: «лёгкое, не горькое» → Helles, Hefeweizen, Witbier. «Горькое и ароматное» → IPA или Pale Ale; из лагеров → Pilsner. «Тёмное, но не сладкое» → Dry Stout или Schwarzbier. «Плотное/десертное» → Imperial Stout. «Кислое/освежающее» → Berliner Weisse или Gose.

@@ -1,0 +1,500 @@
+[CHUNK]
+id: COCKTAIL_001_OLD_FASHIONED
+tags: cocktail, spirit-forward
+keywords: old fashioned, old fashioned, олд фэшн, олд фешен, whiskey cocktail, как сделать old fashioned, рецепт old fashioned
+text: Категория: spirit-forward. Состав (мл): бурбон/ржаной 60; сахар 1 кубик/сироп 10; ангостура 2–3 дэша. Метод: стир в рокс. Подача: rocks, крупный лёд, апельсиновая цедра. Вкус: крепкий, дубовый, сладко-пряный.
+[CHUNK]
+id: COCKTAIL_002_WHISKEY_SOUR
+tags: cocktail, sour, whisky
+keywords: whiskey sour, whiskey sour, виски сауэр, виски сауэр рецепт, с белком, как сделать whiskey sour, рецепт whiskey sour
+text: Категория: sour. Состав (мл): виски 60; лимон 25; сироп 20; (опц. белок 20). Метод: шейк (с dry shake при белке). Подача: купе/рокс, (опц. ангостура). Вкус: кислосладкий, мягкий, зерновой.
+[CHUNK]
+id: COCKTAIL_003_MANHATTAN
+tags: cocktail, spirit-forward, vermouth
+keywords: manhattan, manhattan, манхэттен, манхэттен коктейль, как сделать manhattan, рецепт manhattan
+text: Категория: spirit-forward. Состав (мл): ржаной/бурбон 60; сладкий вермут 30; ангостура 2 дэша. Метод: стир. Подача: купе, вишня. Вкус: пряный, винный, глубокий.
+[CHUNK]
+id: COCKTAIL_004_MARTINI
+tags: cocktail, spirit-forward, gin, vermouth
+keywords: martini, martini, мартини, джин мартини, как сделать martini, рецепт martini
+text: Категория: spirit-forward. Состав (мл): джин 60; сухой вермут 10–15. Метод: стир. Подача: мартини, лимонная цедра/оливка. Вкус: сухой, можжевеловый, чистый.
+[CHUNK]
+id: COCKTAIL_005_NEGRONI
+tags: cocktail, spirit-forward, gin, vermouth, bitter
+keywords: negroni, negroni, негрони, как сделать negroni, рецепт negroni
+text: Категория: spirit-forward. Состав (мл): джин 30; кампари 30; сладкий вермут 30. Метод: стир/билд. Подача: rocks, апельсин. Вкус: горько-сладкий, травяной.
+[CHUNK]
+id: COCKTAIL_006_BOULEVARDIER
+tags: cocktail, spirit-forward, vermouth, bitter
+keywords: boulevardier, boulevardier, бульвардье, как сделать boulevardier, рецепт boulevardier
+text: Категория: spirit-forward. Состав (мл): бурбон 30; кампари 30; сладкий вермут 30. Метод: стир. Подача: rocks, апельсин. Вкус: горький, дубовый, плотный.
+[CHUNK]
+id: COCKTAIL_007_DAIQUIRI
+tags: cocktail, sour, rum
+keywords: daiquiri, daiquiri, дайкири, как сделать daiquiri, рецепт daiquiri
+text: Категория: sour. Состав (мл): белый ром 60; лайм 25; сироп 15–20. Метод: шейк. Подача: купе. Вкус: свежий, лаймовый, ромовый.
+[CHUNK]
+id: COCKTAIL_008_MARGARITA
+tags: cocktail, sour, tequila
+keywords: margarita, margarita, маргарита, коктейль маргарита, как сделать margarita, рецепт margarita
+text: Категория: sour. Состав (мл): текила 50; triple sec 20; лайм 25. Метод: шейк. Подача: купе/рокс, соляной ободок. Вкус: цитрус, кисло-сухой, агавовый.
+[CHUNK]
+id: COCKTAIL_009_TOMMYS_MARGARITA
+tags: cocktail, sour, tequila
+keywords: tommy’s margarita, tommys margarita, томмис маргарита, как сделать tommy’s margarita, рецепт tommy’s margarita
+text: Категория: sour. Состав (мл): текила 60; лайм 30; сироп агавы 15. Метод: шейк. Подача: rocks. Вкус: яркий лайм, агавовая сладость.
+[CHUNK]
+id: COCKTAIL_010_MOJITO
+tags: cocktail, highball, rum
+keywords: mojito, mojito, мохито, как сделать mojito, рецепт mojito
+text: Категория: highball. Состав (мл): белый ром 50; лайм 25; сахар/сироп 15; мята; сода топ. Метод: билд. Подача: хайбол, мята. Вкус: мятно-лаймовый, освежающий.
+[CHUNK]
+id: COCKTAIL_011_CUBA_LIBRE
+tags: cocktail, highball, rum
+keywords: cuba libre, cuba libre, куба либре, как сделать cuba libre, рецепт cuba libre
+text: Категория: highball. Состав (мл): ром 50; кола топ; лайм. Метод: билд. Подача: хайбол, долька лайма. Вкус: карамель-лайм, лёгкий.
+[CHUNK]
+id: COCKTAIL_012_PIÑA_COLADA
+tags: cocktail, dessert/tiki, rum
+keywords: piña colada, pina colada, пина колада, как сделать piña colada, рецепт piña colada
+text: Категория: dessert/tiki. Состав (мл): ром 50; кокос 30; ананас 90. Метод: бленд/шейк. Подача: харрикейн, ананас. Вкус: сливочно-тропический.
+[CHUNK]
+id: COCKTAIL_013_MAI_TAI
+tags: cocktail, tiki, rum
+keywords: mai tai, mai tai, май тай, как сделать mai tai, рецепт mai tai
+text: Категория: tiki. Состав (мл): ром 60; лайм 25; оранж кюрасао 15; оржат 10; сироп 5. Метод: шейк. Подача: rocks, мята. Вкус: миндаль-цитрус, ромовый.
+[CHUNK]
+id: COCKTAIL_014_DARK_N_STORMY
+tags: cocktail, highball, rum
+keywords: dark ’n’ stormy, dark n stormy, дарк энд сторми, как сделать dark ’n’ stormy, рецепт dark ’n’ stormy
+text: Категория: highball. Состав (мл): тёмный ром 50; ginger beer топ; лайм. Метод: билд. Подача: хайбол. Вкус: имбирно-пряный, тёмный ром.
+[CHUNK]
+id: COCKTAIL_015_MINT_JULEP
+tags: cocktail, julep
+keywords: mint julep, mint julep, минт джулеп, как сделать mint julep, рецепт mint julep
+text: Категория: julep. Состав (мл): бурбон 60; сахар 10–15; мята. Метод: билд/мэддл. Подача: julep cup/рокс, дроблёный лёд. Вкус: мятно-сладкий, крепкий.
+[CHUNK]
+id: COCKTAIL_016_HIGHBALL_WHISKY_SODA
+tags: cocktail, highball, whisky
+keywords: highball (whisky soda), whisky highball, виски хайбол, whisky soda, как сделать highball (whisky soda), рецепт highball (whisky soda)
+text: Категория: highball. Состав (мл): виски 50; содовая топ. Метод: билд. Подача: хайбол, лимон. Вкус: лёгкий, освежающий.
+[CHUNK]
+id: COCKTAIL_017_GIMLET
+tags: cocktail, sour, gin
+keywords: gimlet, gimlet, гимлет, как сделать gimlet, рецепт gimlet
+text: Категория: sour. Состав (мл): джин 60; лайм 25; сироп 15. Метод: шейк. Подача: купе. Вкус: можжевельник-лайм.
+[CHUNK]
+id: COCKTAIL_018_FRENCH_75
+tags: cocktail, sparkling, gin, sparkling
+keywords: french 75, french 75, френч 75, как сделать french 75, рецепт french 75
+text: Категория: sparkling. Состав (мл): джин 30; лимон 15; сироп 10; игристое топ. Метод: шейк + топ. Подача: флют/тюльпан, лимон. Вкус: цитрус, сухой, праздничный.
+[CHUNK]
+id: COCKTAIL_019_APEROL_SPRITZ
+tags: cocktail, spritz
+keywords: aperol spritz, aperol spritz, апероль шприц, как сделать aperol spritz, рецепт aperol spritz
+text: Категория: spritz. Состав (мл): апероль 60; просекко 90; сода 30. Метод: билд. Подача: винный бокал, апельсин. Вкус: горько-цитрусовый, лёгкий.
+[CHUNK]
+id: COCKTAIL_020_NEGRONI_SBAGLIATO
+tags: cocktail, spritz, vermouth, bitter, sparkling
+keywords: negroni sbagliato, negroni sbagliato, негрони сбальято, как сделать negroni sbagliato, рецепт negroni sbagliato
+text: Категория: spritz. Состав (мл): кампари 30; сладкий вермут 30; игристое 60–90. Метод: билд. Подача: rocks/wine glass, апельсин. Вкус: горько-винный, пузырьки.
+[CHUNK]
+id: COCKTAIL_021_AMERICANO
+tags: cocktail, highball, vermouth, bitter
+keywords: americano, americano, американо коктейль, как сделать americano, рецепт americano
+text: Категория: highball. Состав (мл): кампари 30; сладкий вермут 30; сода топ. Метод: билд. Подача: хайбол, апельсин. Вкус: мягче негрони, горько-сладкий.
+[CHUNK]
+id: COCKTAIL_022_PALOMA
+tags: cocktail, highball, tequila
+keywords: paloma, paloma, палома, как сделать paloma, рецепт paloma
+text: Категория: highball. Состав (мл): текила 50; лайм 15; грейпфрут-сода топ (или сок+сода). Метод: билд. Подача: хайбол, соль опц.. Вкус: грейпфрут, освежающий.
+[CHUNK]
+id: COCKTAIL_023_TEQUILA_SUNRISE
+tags: cocktail, highball, tequila
+keywords: tequila sunrise, tequila sunrise, текила санрайз, как сделать tequila sunrise, рецепт tequila sunrise
+text: Категория: highball. Состав (мл): текила 50; апельсин 120; гренадин 10. Метод: билд. Подача: хайбол, апельсин. Вкус: сладко-цитрусовый.
+[CHUNK]
+id: COCKTAIL_024_COSMOPOLITAN
+tags: cocktail, sour, vodka
+keywords: cosmopolitan, cosmopolitan, космополитен, как сделать cosmopolitan, рецепт cosmopolitan
+text: Категория: sour. Состав (мл): водка 45; triple sec 15; клюква 30; лайм 15. Метод: шейк. Подача: купе, цедра. Вкус: фруктово-кислый, суховатый.
+[CHUNK]
+id: COCKTAIL_025_MOSCOW_MULE
+tags: cocktail, highball, vodka
+keywords: moscow mule, moscow mule, москоу мьюл, как сделать moscow mule, рецепт moscow mule
+text: Категория: highball. Состав (мл): водка 50; лайм 15; ginger beer топ. Метод: билд. Подача: хайбол/кружка, лайм. Вкус: имбирь-лайм, освежающий.
+[CHUNK]
+id: COCKTAIL_026_ESPRESSO_MARTINI
+tags: cocktail, dessert, vodka
+keywords: espresso martini, espresso martini, эспрессо мартини, как сделать espresso martini, рецепт espresso martini
+text: Категория: dessert. Состав (мл): водка 40; кофейный ликёр 20; эспрессо 30; сироп 5–10. Метод: шейк. Подача: мартини, 3 зерна. Вкус: кофе, сладко-горький, плотный.
+[CHUNK]
+id: COCKTAIL_027_WHITE_RUSSIAN
+tags: cocktail, dessert, vodka
+keywords: white russian, white russian, вайт рашн, как сделать white russian, рецепт white russian
+text: Категория: dessert. Состав (мл): водка 50; кофейный ликёр 25; сливки 25. Метод: билд/стир. Подача: rocks. Вкус: кофе-сливочный.
+[CHUNK]
+id: COCKTAIL_028_BLACK_RUSSIAN
+tags: cocktail, spirit-forward, vodka
+keywords: black russian, black russian, блэк рашн, как сделать black russian, рецепт black russian
+text: Категория: spirit-forward. Состав (мл): водка 50; кофейный ликёр 25. Метод: билд. Подача: rocks. Вкус: крепкий кофе-сладкий.
+[CHUNK]
+id: COCKTAIL_029_BLOODY_MARY
+tags: cocktail, savory, vodka
+keywords: bloody mary, bloody mary, блади мэри, как сделать bloody mary, рецепт bloody mary
+text: Категория: savory. Состав (мл): водка 50; томат 120; лимон 15; специи/соусы по вкусу. Метод: билд/ролл. Подача: хайбол, сельдерей/лимон. Вкус: пряно-томатный, солёный.
+[CHUNK]
+id: COCKTAIL_030_LONG_ISLAND_ICED_TEA
+tags: cocktail, highball, gin, rum, vodka, tequila
+keywords: long island iced tea, long island, лонг айленд, как сделать long island iced tea, рецепт long island iced tea
+text: Категория: highball. Состав (мл): водка 15; джин 15; ром 15; текила 15; triple sec 15; лимон 25; сироп 15; кола топ. Метод: шейк + топ. Подача: хайбол. Вкус: цитрус, крепкий, «коловый».
+[CHUNK]
+id: COCKTAIL_031_MAI_TAI_LIGHT_VARIANT
+tags: cocktail, tiki, rum
+keywords: mai tai (light variant), mai tai light, май тай лайт, как сделать mai tai (light variant), рецепт mai tai (light variant)
+text: Категория: tiki. Состав (мл): ром 50; лайм 25; оранж ликёр 15; оржат 10. Метод: шейк. Подача: rocks. Вкус: миндаль-цитрус.
+[CHUNK]
+id: COCKTAIL_032_SEX_ON_THE_BEACH
+tags: cocktail, fruity, vodka
+keywords: sex on the beach, sex on the beach, секс он зе бич, как сделать sex on the beach, рецепт sex on the beach
+text: Категория: fruity. Состав (мл): водка 40; персиковый ликёр 20; апельсин 60; клюква 60. Метод: билд/шейк. Подача: хайбол. Вкус: сладко-фруктовый.
+[CHUNK]
+id: COCKTAIL_033_BELLINI
+tags: cocktail, sparkling
+keywords: bellini, bellini, беллини, как сделать bellini, рецепт bellini
+text: Категория: sparkling. Состав (мл): пюре персика 50; просекко топ. Метод: билд. Подача: флют. Вкус: персик, лёгкий.
+[CHUNK]
+id: COCKTAIL_034_MIMOSA
+tags: cocktail, sparkling, sparkling
+keywords: mimosa, mimosa, мимоза коктейль, как сделать mimosa, рецепт mimosa
+text: Категория: sparkling. Состав (мл): апельсиновый сок 60; игристое 90. Метод: билд. Подача: флют. Вкус: цитрус, лёгкий.
+[CHUNK]
+id: COCKTAIL_035_CAIPIRINHA
+tags: cocktail, sour
+keywords: caipirinha, caipirinha, кайпиринья, как сделать caipirinha, рецепт caipirinha
+text: Категория: sour. Состав (мл): кашаса 60; лайм дольками; сахар 2 ч.л.. Метод: мэддл + билд. Подача: rocks, дроблёный лёд. Вкус: лайм-тростник, яркий.
+[CHUNK]
+id: COCKTAIL_036_SIDECAR
+tags: cocktail, sour, cognac
+keywords: sidecar, sidecar, сайдкар, как сделать sidecar, рецепт sidecar
+text: Категория: sour. Состав (мл): коньяк 50; triple sec 20; лимон 20. Метод: шейк. Подача: купе, сахарный ободок опц.. Вкус: цитрус-бренди, сухой.
+[CHUNK]
+id: COCKTAIL_037_BRANDY_ALEXANDER
+tags: cocktail, dessert, cognac
+keywords: brandy alexander, brandy alexander, бренди александр, как сделать brandy alexander, рецепт brandy alexander
+text: Категория: dessert. Состав (мл): бренди/коньяк 30; crème de cacao 30; сливки 30. Метод: шейк. Подача: купе, мускат. Вкус: шоколад-сливочный.
+[CHUNK]
+id: COCKTAIL_038_SAZERAC
+tags: cocktail, spirit-forward
+keywords: sazerac, sazerac, сазерак, как сделать sazerac, рецепт sazerac
+text: Категория: spirit-forward. Состав (мл): ржаной 60; сахар 10; пейшо 2–3 дэша; абсент ринс. Метод: стир. Подача: rocks без льда, лимонная цедра. Вкус: анис-пряность, крепкий.
+[CHUNK]
+id: COCKTAIL_039_VIEUX_CARRÉ
+tags: cocktail, spirit-forward, cognac, vermouth
+keywords: vieux carré, vieux carre, вьё карре, как сделать vieux carré, рецепт vieux carré
+text: Категория: spirit-forward. Состав (мл): ржаной 30; коньяк 30; сладкий вермут 30; бенедиктин 7.5; биттеры. Метод: стир. Подача: rocks. Вкус: сложный, пряно-винный.
+[CHUNK]
+id: COCKTAIL_040_ROB_ROY
+tags: cocktail, spirit-forward, vermouth
+keywords: rob roy, rob roy, роб рой, как сделать rob roy, рецепт rob roy
+text: Категория: spirit-forward. Состав (мл): скотч 60; сладкий вермут 30; биттер. Метод: стир. Подача: купе, вишня. Вкус: дымно-винный.
+[CHUNK]
+id: COCKTAIL_041_PENICILLIN
+tags: cocktail, sour, whisky
+keywords: penicillin, penicillin, пенициллин коктейль, как сделать penicillin, рецепт penicillin
+text: Категория: sour. Состав (мл): скотч 50; лимон 25; мёд-имбирь сироп 20; торфяной виски 5–10 (флоат). Метод: шейк. Подача: rocks. Вкус: мёд-имбирь, дым.
+[CHUNK]
+id: COCKTAIL_042_RUSTY_NAIL
+tags: cocktail, spirit-forward
+keywords: rusty nail, rusty nail, расти нейл, как сделать rusty nail, рецепт rusty nail
+text: Категория: spirit-forward. Состав (мл): скотч 45; Drambuie-тип 25. Метод: стир. Подача: rocks. Вкус: мёд-пряность, мягко.
+[CHUNK]
+id: COCKTAIL_043_GODFATHER
+tags: cocktail, spirit-forward
+keywords: godfather, godfather, годфазер, как сделать godfather, рецепт godfather
+text: Категория: spirit-forward. Состав (мл): скотч 45; амаретто 25. Метод: стир. Подача: rocks. Вкус: миндаль-дуб.
+[CHUNK]
+id: COCKTAIL_044_GODMOTHER
+tags: cocktail, spirit-forward, vodka
+keywords: godmother, godmother, годмазер, как сделать godmother, рецепт godmother
+text: Категория: spirit-forward. Состав (мл): водка 45; амаретто 25. Метод: стир. Подача: rocks. Вкус: миндальный, мягкий.
+[CHUNK]
+id: COCKTAIL_045_B-52
+tags: cocktail, shot
+keywords: b-52, b-52, б 52 коктейль, как сделать b-52, рецепт b-52
+text: Категория: shot. Состав (мл): кофейный ликёр 20; сливочный ликёр 20; triple sec 20 (слои). Метод: билд слоями. Подача: шот. Вкус: сладкий, кофейно-сливочный.
+[CHUNK]
+id: COCKTAIL_046_KAMIKAZE
+tags: cocktail, sour/shot, vodka
+keywords: kamikaze, kamikaze, камикадзе, как сделать kamikaze, рецепт kamikaze
+text: Категория: sour/shot. Состав (мл): водка 30; triple sec 30; лайм 30. Метод: шейк. Подача: шот/купе. Вкус: кисло-цитрусовый.
+[CHUNK]
+id: COCKTAIL_047_LEMON_DROP
+tags: cocktail, sour, vodka
+keywords: lemon drop, lemon drop, лемон дроп, как сделать lemon drop, рецепт lemon drop
+text: Категория: sour. Состав (мл): водка 50; triple sec 20; лимон 25; сироп 10. Метод: шейк. Подача: купе, сахарный ободок. Вкус: лимон-сладость.
+[CHUNK]
+id: COCKTAIL_048_GIN_FIZZ
+tags: cocktail, fizz, gin
+keywords: gin fizz, gin fizz, джин физ, как сделать gin fizz, рецепт gin fizz
+text: Категория: fizz. Состав (мл): джин 50; лимон 25; сироп 15; сода топ (опц. белок). Метод: шейк + топ. Подача: хайбол. Вкус: цитрус-газ, лёгкий.
+[CHUNK]
+id: COCKTAIL_049_RAMOS_GIN_FIZZ
+tags: cocktail, fizz, gin
+keywords: ramos gin fizz, ramos gin fizz, рамос джин физ, как сделать ramos gin fizz, рецепт ramos gin fizz
+text: Категория: fizz. Состав (мл): джин 50; лимон 15; лайм 15; сироп 20; сливки 30; белок 20; апельсиновая вода 2–3 дэша; сода топ. Метод: длительный шейк. Подача: хайбол. Вкус: воздушный, цитрус-сливочный.
+[CHUNK]
+id: COCKTAIL_050_SINGAPORE_SLING
+tags: cocktail, long, gin
+keywords: singapore sling, singapore sling, сингапур слинг, как сделать singapore sling, рецепт singapore sling
+text: Категория: long. Состав (мл): джин 40; вишнёвый ликёр 20; бенедиктин 10; ананас 60; лайм 15; гренадин 10; биттер. Метод: шейк. Подача: хайбол. Вкус: фруктовый, пряный.
+[CHUNK]
+id: COCKTAIL_051_PIMMS_CUP
+tags: cocktail, long, gin
+keywords: pimm’s cup, pimms cup, пиммс кап, как сделать pimm’s cup, рецепт pimm’s cup
+text: Категория: long. Состав (мл): Pimm’s-тип 50; лимонад/джинджер-эль топ; фрукты/огурец/мята. Метод: билд. Подача: хайбол. Вкус: лёгкий, травяной.
+[CHUNK]
+id: COCKTAIL_052_IRISH_COFFEE
+tags: cocktail, hot, whisky
+keywords: irish coffee, irish coffee, айриш кофе, как сделать irish coffee, рецепт irish coffee
+text: Категория: hot. Состав (мл): ирландский виски 40; кофе 120; сахар 10–15; сливки флоат. Метод: билд. Подача: айриш-кофе. Вкус: кофе-карамель, согревает.
+[CHUNK]
+id: COCKTAIL_053_HOT_TODDY
+tags: cocktail, hot, whisky
+keywords: hot toddy, hot toddy, хот тодди, как сделать hot toddy, рецепт hot toddy
+text: Категория: hot. Состав (мл): виски 50; мёд 15; лимон 15; горячая вода топ. Метод: билд. Подача: кружка. Вкус: мёд-лимон, мягкий.
+[CHUNK]
+id: COCKTAIL_054_MAI_TAI_AGED
+tags: cocktail, tiki, rum
+keywords: mai tai (aged), mai tai aged, май тай выдержанный, как сделать mai tai (aged), рецепт mai tai (aged)
+text: Категория: tiki. Состав (мл): выдержанный ром 60; лайм 25; оржат 10; оранж ликёр 15. Метод: шейк. Подача: rocks. Вкус: богатый, миндально-ромовый.
+[CHUNK]
+id: COCKTAIL_055_ZOMBIE_УПРОЩ.
+tags: cocktail, tiki, rum
+keywords: zombie (упрощ.), zombie, зомби коктейль, как сделать zombie (упрощ.), рецепт zombie (упрощ.)
+text: Категория: tiki. Состав (мл): ром 60; лайм 25; грейпфрут 20; сироп 15; фалернум 10 (опц.); биттер. Метод: шейк. Подача: хайбол, дроблёный лёд. Вкус: мощный тропик, пряность.
+[CHUNK]
+id: COCKTAIL_056_PAINKILLER
+tags: cocktail, tiki, rum
+keywords: painkiller, painkiller, пэйнкиллер, как сделать painkiller, рецепт painkiller
+text: Категория: tiki. Состав (мл): ром 50; ананас 90; апельсин 30; кокос 30. Метод: шейк. Подача: хайбол, мускат. Вкус: тропик, сливочность.
+[CHUNK]
+id: COCKTAIL_057_PLANTERS_PUNCH_УПРОЩ.
+tags: cocktail, tiki, rum
+keywords: planter’s punch (упрощ.), planters punch, плантерс панч, как сделать planter’s punch (упрощ.), рецепт planter’s punch (упрощ.)
+text: Категория: tiki. Состав (мл): ром 60; лайм 25; сироп 15; биттер 2 дэша. Метод: шейк. Подача: rocks. Вкус: ром-цитрус, баланс.
+[CHUNK]
+id: COCKTAIL_058_CLOVER_CLUB
+tags: cocktail, sour, gin
+keywords: clover club, clover club, кловер клаб, как сделать clover club, рецепт clover club
+text: Категория: sour. Состав (мл): джин 50; лимон 20; сироп 15; малина 15 (или сироп); белок 20. Метод: dry shake + шейк. Подача: купе. Вкус: ягодно-цитрусовый, нежный.
+[CHUNK]
+id: COCKTAIL_059_AVIATION
+tags: cocktail, sour/aromatic, gin
+keywords: aviation, aviation, авиация коктейль, как сделать aviation, рецепт aviation
+text: Категория: sour/aromatic. Состав (мл): джин 50; лимон 20; мараскино 10; crème de violette 5 (опц.). Метод: шейк. Подача: купе. Вкус: цветочно-цитрусный.
+[CHUNK]
+id: COCKTAIL_060_LAST_WORD
+tags: cocktail, sour, gin
+keywords: last word, last word, ласт ворд, как сделать last word, рецепт last word
+text: Категория: sour. Состав (мл): джин 25; лайм 25; мараскино 25; зелёный травяной ликёр 25. Метод: шейк. Подача: купе. Вкус: травяной, яркий, сложный.
+[CHUNK]
+id: COCKTAIL_061_CORPSE_REVIVER_2
+tags: cocktail, sour, gin
+keywords: corpse reviver #2, corpse reviver 2, корпс ревайвер 2, как сделать corpse reviver #2, рецепт corpse reviver #2
+text: Категория: sour. Состав (мл): джин 25; triple sec 25; Lillet-тип 25; лимон 25; абсент ринс. Метод: шейк. Подача: купе. Вкус: цитрус-травы, бодрит.
+[CHUNK]
+id: COCKTAIL_062_BEES_KNEES
+tags: cocktail, sour, gin
+keywords: bee’s knees, bees knees, биз нис, как сделать bee’s knees, рецепт bee’s knees
+text: Категория: sour. Состав (мл): джин 60; лимон 25; мёд-сироп 20. Метод: шейк. Подача: купе. Вкус: мёд-цитрус, мягкий.
+[CHUNK]
+id: COCKTAIL_063_SOUTHSIDE
+tags: cocktail, sour, gin
+keywords: southside, southside, саутсайд, как сделать southside, рецепт southside
+text: Категория: sour. Состав (мл): джин 60; лайм 25; сироп 15; мята. Метод: шейк. Подача: купе. Вкус: мята-лайм, свежий.
+[CHUNK]
+id: COCKTAIL_064_FRENCH_MARTINI
+tags: cocktail, fruity, vodka
+keywords: french martini, french martini, френч мартини, как сделать french martini, рецепт french martini
+text: Категория: fruity. Состав (мл): водка 45; малиновый ликёр 15; ананас 60. Метод: шейк. Подача: мартини. Вкус: ананас-ягода, мягкий.
+[CHUNK]
+id: COCKTAIL_065_PORNSTAR_MARTINI
+tags: cocktail, fruity, vodka, sparkling
+keywords: pornstar martini, pornstar martini, порнстар мартини, как сделать pornstar martini, рецепт pornstar martini
+text: Категория: fruity. Состав (мл): водка ваниль 45; маракуйя 30; лайм 15; сироп 10; отдельно игристое шот. Метод: шейк. Подача: купе + шот игристого. Вкус: тропик-ваниль, яркий.
+[CHUNK]
+id: COCKTAIL_066_MAI_TAI_БЕЗ_ОРЖАТА_—_БЫСТРЫЙ
+tags: cocktail, tiki, rum
+keywords: mai tai (без оржата — быстрый), mai tai no orgeat, май тай без оржата, как сделать mai tai (без оржата — быстрый), рецепт mai tai (без оржата — быстрый)
+text: Категория: tiki. Состав (мл): ром 60; лайм 25; апельсиновый ликёр 20; сироп 10. Метод: шейк. Подача: rocks. Вкус: цитрус-ром, проще.
+[CHUNK]
+id: COCKTAIL_067_CAIPIROSKA
+tags: cocktail, sour, vodka
+keywords: caipiroska, caipiroska, кайпироска, как сделать caipiroska, рецепт caipiroska
+text: Категория: sour. Состав (мл): водка 60; лайм; сахар. Метод: мэддл + билд. Подача: rocks. Вкус: лайм-водка, яркий.
+[CHUNK]
+id: COCKTAIL_068_VODKA_TONIC
+tags: cocktail, highball, vodka
+keywords: vodka tonic, vodka tonic, водка-тоник, как сделать vodka tonic, рецепт vodka tonic
+text: Категория: highball. Состав (мл): водка 50; тоник топ; лайм. Метод: билд. Подача: хайбол. Вкус: сухой, горчинка тоника.
+[CHUNK]
+id: COCKTAIL_069_GIN_TONIC
+tags: cocktail, highball, gin
+keywords: gin tonic, gin tonic, джин-тоник, как сделать gin tonic, рецепт gin tonic
+text: Категория: highball. Состав (мл): джин 50; тоник топ. Метод: билд. Подача: хайбол/винный бокал. Вкус: можжевельник-цитрус.
+[CHUNK]
+id: COCKTAIL_070_SEA_BREEZE
+tags: cocktail, highball, vodka
+keywords: sea breeze, sea breeze, си бриз, как сделать sea breeze, рецепт sea breeze
+text: Категория: highball. Состав (мл): водка 40; клюква 60; грейпфрут 60. Метод: билд. Подача: хайбол. Вкус: кисленько-фруктовый.
+[CHUNK]
+id: COCKTAIL_071_CAPE_CODDER
+tags: cocktail, highball, vodka
+keywords: cape codder, cape codder, кейп коддер, как сделать cape codder, рецепт cape codder
+text: Категория: highball. Состав (мл): водка 50; клюква топ; лайм. Метод: билд. Подача: хайбол. Вкус: клюква, просто.
+[CHUNK]
+id: COCKTAIL_072_SCREWDRIVER
+tags: cocktail, highball, vodka
+keywords: screwdriver, screwdriver, отвёртка, как сделать screwdriver, рецепт screwdriver
+text: Категория: highball. Состав (мл): водка 50; апельсин топ. Метод: билд. Подача: хайбол. Вкус: апельсин, мягко.
+[CHUNK]
+id: COCKTAIL_073_GREYHOUND
+tags: cocktail, highball, gin, vodka
+keywords: greyhound, greyhound, грейхаунд, как сделать greyhound, рецепт greyhound
+text: Категория: highball. Состав (мл): водка/джин 50; грейпфрут сок топ. Метод: билд. Подача: хайбол. Вкус: грейпфрут, суховатый.
+[CHUNK]
+id: COCKTAIL_074_SALTY_DOG
+tags: cocktail, highball
+keywords: salty dog, salty dog, солти дог, как сделать salty dog, рецепт salty dog
+text: Категория: highball. Состав (мл): как Greyhound + соляной ободок. Метод: билд. Подача: хайбол. Вкус: грейпфрут-соль.
+[CHUNK]
+id: COCKTAIL_075_FRENCH_CONNECTION
+tags: cocktail, spirit-forward, cognac
+keywords: french connection, french connection, френч коннекшн, как сделать french connection, рецепт french connection
+text: Категория: spirit-forward. Состав (мл): коньяк 45; амаретто 25. Метод: стир. Подача: rocks. Вкус: миндаль-бренди.
+[CHUNK]
+id: COCKTAIL_076_ALEXANDER_GIN
+tags: cocktail, dessert, gin
+keywords: alexander (gin), gin alexander, джин александр, как сделать alexander (gin), рецепт alexander (gin)
+text: Категория: dessert. Состав (мл): джин 30; crème de cacao 30; сливки 30. Метод: шейк. Подача: купе. Вкус: шоколад-сливки, ароматный.
+[CHUNK]
+id: COCKTAIL_077_STINGER
+tags: cocktail, spirit-forward, cognac
+keywords: stinger, stinger, стингер, как сделать stinger, рецепт stinger
+text: Категория: spirit-forward. Состав (мл): коньяк 50; мятный ликёр 20. Метод: стир. Подача: rocks. Вкус: мята-бренди.
+[CHUNK]
+id: COCKTAIL_078_BETWEEN_THE_SHEETS
+tags: cocktail, sour, rum, cognac
+keywords: between the sheets, between the sheets, битвин зе шитс, как сделать between the sheets, рецепт between the sheets
+text: Категория: sour. Состав (мл): коньяк 30; ром 30; triple sec 20; лимон 20. Метод: шейк. Подача: купе. Вкус: цитрус, крепкий, сухой.
+[CHUNK]
+id: COCKTAIL_079_BRAMBLE
+tags: cocktail, sour, gin
+keywords: bramble, bramble, брамбл, как сделать bramble, рецепт bramble
+text: Категория: sour. Состав (мл): джин 50; лимон 25; сироп 15; blackberry-ликёр 15. Метод: шейк. Подача: rocks, дроблёный лёд. Вкус: ягода-цитрус.
+[CHUNK]
+id: COCKTAIL_080_GIN_BASIL_SMASH
+tags: cocktail, sour, gin
+keywords: gin basil smash, gin basil smash, джин базил смеш, как сделать gin basil smash, рецепт gin basil smash
+text: Категория: sour. Состав (мл): джин 60; лимон 25; сироп 20; базилик. Метод: шейк. Подача: rocks. Вкус: базилик-цитрус, свежий.
+[CHUNK]
+id: COCKTAIL_081_PAPER_PLANE
+tags: cocktail, sour
+keywords: paper plane, paper plane, пейпер плейн, как сделать paper plane, рецепт paper plane
+text: Категория: sour. Состав (мл): бурбон 30; апероль 30; амаро-тип 30; лимон 30. Метод: шейк. Подача: купе. Вкус: горько-цитрусный, баланс.
+[CHUNK]
+id: COCKTAIL_082_AMARETTO_SOUR
+tags: cocktail, sour
+keywords: amaretto sour, amaretto sour, амаретто сауэр, как сделать amaretto sour, рецепт amaretto sour
+text: Категория: sour. Состав (мл): амаретто 60; лимон 25; сироп 10 (опц. бурбон 15; белок). Метод: шейк. Подача: rocks. Вкус: миндаль-лимон, сладко-кислый.
+[CHUNK]
+id: COCKTAIL_083_PISCO_SOUR
+tags: cocktail, sour
+keywords: pisco sour, pisco sour, писко сауэр, как сделать pisco sour, рецепт pisco sour
+text: Категория: sour. Состав (мл): писко 60; лайм 25; сироп 20; белок 20; биттер. Метод: dry shake + шейк. Подача: купе. Вкус: виноградный, кремовый.
+[CHUNK]
+id: COCKTAIL_084_CANCHÁNCHARA_УПРОЩ.
+tags: cocktail, sour, rum
+keywords: canchánchara (упрощ.), canchanchara, канчанчара, как сделать canchánchara (упрощ.), рецепт canchánchara (упрощ.)
+text: Категория: sour. Состав (мл): ром/кашаса 50; лайм 20; мёд-сироп 20. Метод: билд/шейк. Подача: rocks. Вкус: мёд-лайм, тростник.
+[CHUNK]
+id: COCKTAIL_085_SPRITZ_CAMPARI
+tags: cocktail, spritz, bitter, sparkling
+keywords: spritz (campari), campari spritz, кампари шприц, как сделать spritz (campari), рецепт spritz (campari)
+text: Категория: spritz. Состав (мл): кампари 60; игристое 90; сода 30. Метод: билд. Подача: винный бокал. Вкус: горько-цитрусный, мощнее апероля.
+[CHUNK]
+id: COCKTAIL_086_HUGO_SPRITZ
+tags: cocktail, spritz
+keywords: hugo spritz, hugo spritz, хуго шприц, как сделать hugo spritz, рецепт hugo spritz
+text: Категория: spritz. Состав (мл): бузинный ликёр 30; просекко 90; сода 30; мята; лайм. Метод: билд. Подача: винный бокал. Вкус: цветочно-свежий.
+[CHUNK]
+id: COCKTAIL_087_SANGRIA_БАЗА
+tags: cocktail, punch
+keywords: sangria (база), sangria, сангрия, как сделать sangria (база), рецепт sangria (база)
+text: Категория: punch. Состав (мл): вино 150; фрукты; бренди 20–30; содовая/сок по вкусу. Метод: билд. Подача: кувшин/бокал. Вкус: фруктово-винный.
+[CHUNK]
+id: COCKTAIL_088_KIR
+tags: cocktail, aperitif
+keywords: kir, kir, кир, как сделать kir, рецепт kir
+text: Категория: aperitif. Состав (мл): белое вино 150; crème de cassis 10–15. Метод: билд. Подача: винный бокал. Вкус: ягодно-винный.
+[CHUNK]
+id: COCKTAIL_089_KIR_ROYALE
+tags: cocktail, aperitif/sparkling, sparkling
+keywords: kir royale, kir royale, кир рояль, как сделать kir royale, рецепт kir royale
+text: Категория: aperitif/sparkling. Состав (мл): игристое 150; crème de cassis 10–15. Метод: билд. Подача: флют. Вкус: ягодно-праздничный.
+[CHUNK]
+id: COCKTAIL_090_CHAMPAGNE_COCKTAIL
+tags: cocktail, sparkling, sparkling
+keywords: champagne cocktail, champagne cocktail, шампанское коктейль, как сделать champagne cocktail, рецепт champagne cocktail
+text: Категория: sparkling. Состав (мл): сахар кубик; ангостура 2 дэша; игристое топ. Метод: билд. Подача: флют, лимон. Вкус: сухой, ароматный.
+[CHUNK]
+id: COCKTAIL_091_CLOVER_CLUB_С_СИРОПОМ
+tags: cocktail, sour, gin
+keywords: clover club (с сиропом), clover club raspberry, кловер клаб сироп, как сделать clover club (с сиропом), рецепт clover club (с сиропом)
+text: Категория: sour. Состав (мл): джин 50; лимон 20; малиновый сироп 20; белок 20. Метод: dry shake + шейк. Подача: купе. Вкус: ягодный, воздушный.
+[CHUNK]
+id: COCKTAIL_092_VODKA_MARTINI
+tags: cocktail, spirit-forward, vodka, vermouth
+keywords: vodka martini, vodka martini, водка мартини, как сделать vodka martini, рецепт vodka martini
+text: Категория: spirit-forward. Состав (мл): водка 60; сухой вермут 10. Метод: стир. Подача: мартини. Вкус: очень чистый, сухой.
+[CHUNK]
+id: COCKTAIL_093_DIRTY_MARTINI
+tags: cocktail, spirit-forward, gin, vodka, vermouth
+keywords: dirty martini, dirty martini, дирти мартини, как сделать dirty martini, рецепт dirty martini
+text: Категория: spirit-forward. Состав (мл): джин/водка 60; сухой вермут 10; оливковый рассол 5–15. Метод: стир. Подача: мартини, оливки. Вкус: солёный, сухой.
+[CHUNK]
+id: COCKTAIL_094_ESPRESSO_TONIC
+tags: cocktail, long
+keywords: espresso tonic, espresso tonic, эспрессо тоник, как сделать espresso tonic, рецепт espresso tonic
+text: Категория: long. Состав (мл): эспрессо 30; тоник 120; лёд (опц. сироп 5–10). Метод: билд. Подача: хайбол. Вкус: кофе-горчинка, освежает.
+[CHUNK]
+id: COCKTAIL_095_SPRITZ_BIANCO
+tags: cocktail, spritz, vermouth, sparkling
+keywords: spritz bianco, bianco spritz, бианко шприц, как сделать spritz bianco, рецепт spritz bianco
+text: Категория: spritz. Состав (мл): вермут bianco 60; игристое 90; сода 30. Метод: билд. Подача: винный бокал. Вкус: ванильно-цветочный, лёгкий.
+[CHUNK]
+id: COCKTAIL_096_COGNAC_HIGHBALL
+tags: cocktail, highball, cognac
+keywords: cognac highball, cognac highball, коньяк хайбол, как сделать cognac highball, рецепт cognac highball
+text: Категория: highball. Состав (мл): коньяк 40; содовая топ; лимон. Метод: билд. Подача: хайбол. Вкус: виноград-дуб, освежает.
+[CHUNK]
+id: COCKTAIL_097_RUM_OLD_FASHIONED
+tags: cocktail, spirit-forward, rum
+keywords: rum old fashioned, rum old fashioned, ром олд фэшн, как сделать rum old fashioned, рецепт rum old fashioned
+text: Категория: spirit-forward. Состав (мл): выдержанный ром 60; сироп 10; биттер 2 дэша. Метод: стир. Подача: rocks. Вкус: карамель-тростник, пряно.
+[CHUNK]
+id: COCKTAIL_098_NEW_YORK_SOUR
+tags: cocktail, sour
+keywords: new york sour, new york sour, нью йорк сауэр, как сделать new york sour, рецепт new york sour
+text: Категория: sour. Состав (мл): whiskey sour база + красное вино 15 флоат. Метод: шейк + флоат. Подача: rocks. Вкус: кислый виски + винная ягодность.
+[CHUNK]
+id: COCKTAIL_099_SPICY_MARGARITA
+tags: cocktail, sour, tequila
+keywords: spicy margarita, spicy margarita, спайси маргарита, как сделать spicy margarita, рецепт spicy margarita
+text: Категория: sour. Состав (мл): текила 50; triple sec 20; лайм 25; сироп 10; халапеньо/чили. Метод: шейк. Подача: rocks. Вкус: лайм-агава, остро.
+[CHUNK]
+id: COCKTAIL_100_BASIL_SMASH_VODKA
+tags: cocktail, sour, vodka
+keywords: basil smash (vodka), vodka basil smash, бэзил смеш водка, как сделать basil smash (vodka), рецепт basil smash (vodka)
+text: Категория: sour. Состав (мл): водка 60; лимон 25; сироп 20; базилик. Метод: шейк. Подача: rocks. Вкус: травяно-цитрусовый, мягче джина.

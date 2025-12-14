@@ -1,0 +1,73 @@
+telegram-bar-assistant/
+├── main.py                     # Точка входа приложения
+├── bot.py                      # Основная логика Telegram бота
+├── config.py                   # Конфигурация и настройки
+├── requirements.txt            # Python зависимости
+├── .env.example               # Пример переменных окружения
+├── .gitignore                 # Исключения для Git
+├── pytest.ini                 # Настройки тестирования
+├── LICENSE                    # MIT лицензия
+├── README.md                  # Документация проекта
+├── SETUP.md                   # Инструкции по установке
+├── CHANGELOG.md               # История изменений
+├── CONTRIBUTING.md            # Руководство для разработчиков
+├── PROJECT_STATUS.md          # Статус проекта
+├── START_HERE.md              # Быстрый старт
+├── activate.bat               # Активация venv (Windows)
+├── activate.sh                # Активация venv (Linux/Mac)
+├── reset_webhook.py           # Сброс Telegram webhook
+├── 
+├── handlers/                   # Обработчики Telegram событий
+│   ├── __init__.py
+│   ├── start.py               # Команды /start, /help, /stats, /reindex
+│   ├── admin.py               # Административные команды
+│   ├── text.py                # Обработка текстовых сообщений
+│   ├── voice.py               # Обработка голосовых сообщений
+│   └── image.py               # Обработка изображений
+├── 
+├── services/                   # Сервисы и API клиенты
+│   ├── __init__.py
+│   ├── openai_client.py       # OpenAI API (GPT, Whisper, TTS, Vision)
+│   ├── openrouter_client.py   # OpenRouter API (Gemini для изображений)
+│   ├── router.py              # Роутинг запросов (RAG vs OpenAI)
+│   ├── stt.py                 # Speech-to-Text сервис
+│   ├── tts.py                 # Text-to-Speech сервис
+│   ├── vision.py              # Анализ изображений
+│   └── image_cache.py         # Кэширование сгенерированных изображений
+├── 
+├── rag/                        # RAG система (Retrieval-Augmented Generation)
+│   ├── __init__.py
+│   ├── loader.py              # Загрузка и парсинг документов
+│   ├── index.py               # Индексация документов (JSON-based)
+│   └── query.py               # Поиск по базе знаний с склонениями
+├── 
+├── data/                       # Данные проекта
+│   ├── documents/             # База знаний (TXT файлы)
+│   │   ├── README.md          # Описание формата документов
+│   │   ├── 01_whisky_chunks.txt        # Виски и бурбон
+│   │   ├── 02_liqueurs_chunks.txt      # Ликеры
+│   │   ├── 03_wine_sparkling_chunks.txt # Вина и шампанское
+│   │   ├── 04_gin_chunks.txt           # Джин
+│   │   ├── 05_vodka_rum_chunks.txt     # Водка и ром
+│   │   ├── 06_balsams_vermouth_chunks.txt # Бальзамы и вермуты
+│   │   ├── 07_cognac_brandy_chunks.txt # Коньяк и бренди
+│   │   ├── 08_distillates_grappa_schnapps_chunks.txt # Дистилляты
+│   │   ├── 09_cocktails_100_chunks.txt # 100 классических коктейлей
+│   │   └── 10_beer_chunks.txt          # Пиво
+│   ├── chroma_db/             # Индекс базы знаний
+│   │   └── simple_index.json  # JSON индекс документов
+│   └── images/                # Кэш сгенерированных изображений
+│       ├── COCKTAIL_045_B-52_standard.png
+│       └── COCKTAIL_050_SINGAPORE_SLING_standard.png
+├── 
+├── tests/                      # Тесты
+│   ├── __init__.py
+│   ├── test_rag.py            # Тесты RAG системы
+│   ├── test_text.py           # Тесты обработки текста
+│   └── test_stt.py            # Тесты STT сервиса
+├── 
+└── test_*.py                   # Дополнительные тестовые файлы
+    ├── test_document_selection.py
+    ├── test_full_request.py
+    ├── test_image_prompt.py
+    └── test_openrouter_prompt.py

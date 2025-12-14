@@ -1,0 +1,45 @@
+[CHUNK]
+id: WHISKY_DEF_001
+tags: whisky, basics, definition
+keywords: виски, что такое виски, определение виски, whisky
+text: Виски — крепкий дистиллят из зернового сырья (ячмень, кукуруза, рожь, пшеница), обычно 40–50% ABV, как правило выдержанный в дубовой таре. На вкус влияют: сырьё, дрожжи и брожение, тип перегонки (pot still/column), тип и история бочки (ex-bourbon, ex-sherry и др.), возраст и климат выдержки, а также купажирование и фильтрация.
+[CHUNK]
+id: WHISKY_STYLES_002
+tags: whisky, basics, styles
+keywords: стили виски, виды виски, single malt, blended, grain whisky, bourbon, rye
+text: Базовые стили виски: Single Malt (100% солодовый ячмень, одна дистиллерия), Blended Malt (смесь солодовых), Grain Whisky (зерновой, часто колонная перегонка), Blended Scotch (солод+зерно), Bourbon (США: минимум 51% кукурузы, новые обожжённые дубовые бочки), Rye (акцент на рожь, пряность), Irish (часто мягче, нередко тройная перегонка), Japanese (часто стиль ближе к шотландскому, акцент на баланс).
+[CHUNK]
+id: WHISKY_SCOTCH_REGIONS_003
+tags: whisky, scotch, regions
+keywords: регионы шотландии, speyside, islay, highlands, lowlands, campbeltown
+text: Упрощённые профили регионов Шотландии: Speyside — фруктовость, мёд, ваниль; Highlands — широкий диапазон от лёгких до плотных; Islay — торф, дым, йодистость, морская солёность; Lowlands — лёгкость, травы, цитрус; Campbeltown — маслянистость, морские ноты и характерная «грязинка».
+[CHUNK]
+id: WHISKY_PROCESS_004
+tags: whisky, production, process
+keywords: как делают виски, производство виски, брожение, перегонка, выдержка
+text: Схема производства виски: подготовка зерна (для malt — соложение), затирание (сусло), брожение (получение «пива» 7–10%), перегонка (pot still — более выраженный характер; column — легче/чище), выдержка в дубе, купажирование/розлив (возможна фильтрация и доведение крепости водой).
+[CHUNK]
+id: WHISKY_CASKS_005
+tags: whisky, maturation, casks
+keywords: бочки виски, ex-bourbon, ex-sherry, finish, char, toast
+text: Влияние бочек: ex-bourbon — ваниль, кокос, карамель, дуб; ex-sherry — сухофрукты, орехи, специи, шоколад; port/wine cask — ягодность и винность; new oak — мощный дуб, пряность, карамель. Важны обжиг/тостирование (char/toast), размер (barrel/hogshead/butt) и количество заполнений (first fill/refill).
+[CHUNK]
+id: WHISKY_LABEL_TERMS_006
+tags: whisky, label, terms
+keywords: age statement, NAS, cask strength, non-chill filtered, single cask, peated
+text: Термины на этикетке: Age Statement (например, 12 YO) — возраст самого молодого спирта в бутылке; NAS — без возраста; Cask Strength — бочковая крепость; Non‑Chill Filtered — без холодной фильтрации (может мутнеть на холоде); Single Cask — из одной бочки; Peated — торфяной/дымный; Finish — финишная выдержка в другой бочке.
+[CHUNK]
+id: WHISKY_SERVE_007
+tags: whisky, service, bartending
+keywords: как подавать виски, neat, on the rocks, с водой, highball
+text: Подача виски: neat (чистым) — тюльпан/снифтер; on the rocks — лёд смягчает спирт и снижает аромат; с водой — 3–10 мл часто раскрывают аромат, особенно у крепких; highball — виски + содовая/имбирный эль, длинный освежающий формат.
+[CHUNK]
+id: WHISKY_TASTING_008
+tags: whisky, tasting, notes
+keywords: дегустация виски, ноты виски, аромат виски, послевкусие
+text: Шпаргалка описания: аромат — ваниль, карамель, мёд, яблоко/груша, цитрус, дым/торф, кожа, орех, изюм; вкус — сладость (карамель), пряность (рожь), дымность (торф), дуб (танин); послевкусие — короткое/среднее/долгое, сухое/сладкое/дымное.
+[CHUNK]
+id: WHISKY_CLASSIC_COCKTAILS_009
+tags: whisky, cocktails, classic
+keywords: коктейли на виски, old fashioned, whiskey sour, manhattan, rob roy, boulevardier, mint julep
+text: Классические коктейли на виски: Old Fashioned, Whiskey Sour, Manhattan, Rob Roy, Boulevardier, Mint Julep, Highball. Для более сухого и пряного профиля чаще берут ржаной/более «сухой» виски; для сладкой ванильности — бурбон.
