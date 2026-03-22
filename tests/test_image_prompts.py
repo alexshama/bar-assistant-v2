@@ -30,6 +30,9 @@ class TestImagePrompts:
         prompt = self.router._create_cocktail_image_prompt(document, "покажи b-52").lower()
 
         assert "exactly one small clear shot glass" in prompt
-        assert "exactly three distinct liquid layers only" in prompt
+        assert "exactly three horizontal liquid layers only" in prompt
+        assert "from bottom to top in this exact order" in prompt
+        assert "no fourth layer" in prompt
+        assert "no repeated bands" in prompt
         assert "no second glass" in prompt
         assert "no extra drink" in prompt
