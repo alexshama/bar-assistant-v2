@@ -189,11 +189,24 @@ class RequestRouter:
 
         if cocktail_name.lower() in {"b-52", "b52"}:
             return (
-                "Professional cocktail photography of B-52 layered alcoholic shot. "
-                "Small clear shot glass with exactly three distinct liquid layers: "
-                "bottom dark brown coffee liqueur, middle light beige Irish liqueur, "
-                "top clear orange liqueur. Clean separation between layers, no foam, "
-                "no toppings, minimalist bar background, realistic lighting."
+                "Professional cocktail photography of one B-52 layered shot. "
+                "Exactly one small clear shot glass in frame. "
+                "Exactly three distinct liquid layers only: "
+                "bottom dark brown coffee liqueur, middle light beige cream liqueur, "
+                "top orange-golden triple sec. "
+                "Sharp clean layer separation, straight-sided shot glass, realistic proportions. "
+                "No second glass, no extra drink, no foam, no whipped cream, no garnish, "
+                "no straw, no bottle, minimalist neutral bar background, realistic lighting."
+            )
+
+        if cocktail_name.lower() in {"негрони", "negroni"}:
+            return (
+                "Professional cocktail photography of one classic Negroni. "
+                "Exactly one rocks glass in frame, filled with a deep ruby-red cocktail over large clear ice cubes. "
+                "Classic build: gin, Campari, sweet vermouth. "
+                "Garnish only with a small orange peel or orange slice on the rim. "
+                "Spirit-forward Italian aperitivo style, elegant realistic bar setting, realistic lighting. "
+                "No foam, no whipped cream, no creamy topping, no cherry, no mint, no straw, no extra glass, no second drink."
             )
 
         prompt = f"Professional cocktail photography. Single {cocktail_name} cocktail. "
@@ -208,7 +221,8 @@ class RequestRouter:
             prompt += f"Garnished with {garnish}. "
         prompt += (
             "Single drink in frame, realistic bar background, elegant lighting, no text, "
-            "no extra glasses, no whipped cream, no excessive decorations."
+            "no extra glasses, no second drink, no whipped cream, no foam unless explicitly required, "
+            "no excessive decorations, no unrealistic garnish."
         )
         return prompt
 
