@@ -29,10 +29,32 @@ class TestImagePrompts:
 
         prompt = self.router._create_cocktail_image_prompt(document, "покажи b-52").lower()
 
-        assert "exactly one small clear shot glass" in prompt
+        assert "exactly one small clear straight-sided shot glass" in prompt
         assert "exactly three horizontal liquid layers only" in prompt
         assert "from bottom to top in this exact order" in prompt
         assert "no fourth layer" in prompt
         assert "no repeated bands" in prompt
-        assert "no second glass" in prompt
-        assert "no extra drink" in prompt
+        assert "no extra glass" in prompt
+        assert "no second drink" in prompt
+
+    def test_b52_uses_layered_shot_generation_mode(self):
+        document = (
+            "COCKTAIL 045 b-52. Категория: shot. "
+            "Состав (мл): кофейный ликёр 20; сливочный ликёр 20; triple sec 20 (слои). "
+            "Метод: билд слоями. Подача: shot."
+        )
+
+        mode = self.router._determine_image_generation_mode(document, "покажи b-52")
+
+        assert mode == "layered_shot"
+
+    def test_regular_cocktail_uses_default_generation_mode(self):
+        document = (
+            "COCKTAIL 005 негрони. Категория: spirit-forward. "
+            "Состав (мл): джин 30; кампари 30; сладкий вермут 30. "
+            "Подача: rocks, апельсин."
+        )
+
+        mode = self.router._determine_image_generation_mode(document, "покажи фото негрони")
+
+        assert mode == "default"

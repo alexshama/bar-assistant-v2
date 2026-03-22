@@ -155,8 +155,13 @@ class RequestRouter:
             )
             result["sources"] = [best_source] if best_source else []
             image_prompt = self._create_cocktail_image_prompt(best_document, text)
+            generation_mode = self._determine_image_generation_mode(best_document, text)
             cocktail_id = best_source.get("chunk_id", "unknown") if best_source else "unknown"
-            image_bytes = await openrouter_client.generate_image(image_prompt, cocktail_id)
+            image_bytes = await openrouter_client.generate_image(
+                image_prompt,
+                cocktail_id,
+                generation_mode=generation_mode,
+            )
 
             if image_bytes:
                 result["image_bytes"] = image_bytes
@@ -179,6 +184,14 @@ class RequestRouter:
             result["text"] = "😔 Не удалось сгенерировать изображение."
         return result
 
+    def _determine_image_generation_mode(self, cocktail_info: str, original_request: str) -> str:
+        combined = f"{cocktail_info}\n{original_request}".lower()
+        if "b-52" in combined or "b52" in combined:
+            return "layered_shot"
+        if "слои" in combined and ("шот" in combined or "shot" in combined):
+            return "layered_shot"
+        return "default"
+
     def _create_cocktail_image_prompt(self, cocktail_info: str, original_request: str) -> str:
         cocktail_name = self._extract_cocktail_name(cocktail_info, original_request)
         ingredients = self._extract_ingredients(cocktail_info)
@@ -187,22 +200,8 @@ class RequestRouter:
         garnish = self._extract_garnish(cocktail_info)
         color = self._extract_color_info(cocktail_info)
 
-        if cocktail_name.lower() in {"b-52", "b52"}:
-            return (
-                "Professional cocktail photography of one B-52 layered shot. "
-                "Exactly one small clear shot glass in frame. "
-                "Side view of the glass so the layer order is clearly visible. "
-                "Exactly three horizontal liquid layers only, no more and no fewer. "
-                "From bottom to top in this exact order: "
-                "1) dark brown coffee liqueur, "
-                "2) light beige cream liqueur, "
-                "3) transparent orange-golden triple sec. "
-                "Each layer should occupy about one third of the glass height. "
-                "Sharp clean separation between layers, no mixed gradients, no repeated bands, "
-                "no fourth layer, straight-sided shot glass, realistic proportions. "
-                "No second glass, no extra drink, no foam, no whipped cream, no garnish, "
-                "no straw, no bottle, minimalist neutral bar background, realistic lighting."
-            )
+        if self._determine_image_generation_mode(cocktail_info, original_request) == "layered_shot":
+            return self._create_layered_shot_prompt(cocktail_name, cocktail_info)
 
         if cocktail_name.lower() in {"негрони", "negroni"}:
             return (
@@ -230,6 +229,33 @@ class RequestRouter:
             "no excessive decorations, no unrealistic garnish."
         )
         return prompt
+
+    def _create_layered_shot_prompt(self, cocktail_name: str, cocktail_info: str) -> str:
+        name_lower = cocktail_name.lower()
+        if name_lower in {"b-52", "b52"}:
+            return (
+                "Professional cocktail photography of one B-52 layered shot. "
+                "Exactly one small clear straight-sided shot glass in frame. "
+                "Strict layered shot mode. Side profile only, with the full height of the glass visible. "
+                "Exactly three horizontal liquid layers only, no more and no fewer. "
+                "From bottom to top in this exact order: "
+                "1) dark brown coffee liqueur, "
+                "2) light beige cream liqueur, "
+                "3) transparent orange-golden triple sec. "
+                "Each layer should occupy roughly one third of the glass height. "
+                "Sharp clean separation between layers, no mixed gradients, no repeated bands, no fourth layer. "
+                "No floating foam, no creamy cap, no garnish, no straw, no bottle, no hands, "
+                "no extra glass, no second drink, plain neutral bar background, realistic studio lighting."
+            )
+
+        ingredients = self._extract_ingredients(cocktail_info)
+        return (
+            f"Professional cocktail photography of one layered shot: {cocktail_name}. "
+            "Exactly one small clear shot glass in frame. Strict layered shot mode. "
+            "Side profile only, with clearly separated horizontal layers and realistic liquid density. "
+            f"Ingredients reference: {ingredients}. "
+            "No extra drink, no garnish, no straw, no foam cap, no repeated bands, plain neutral background."
+        )
 
     def _extract_cocktail_name(self, info: str, original: str) -> str:
         match = re.search(r"COCKTAIL_\d+_([A-Z0-9_]+)", info.upper())

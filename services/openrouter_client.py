@@ -31,7 +31,13 @@ class OpenRouterClient:
         if settings.openrouter_app_name:
             self.headers["X-Title"] = settings.openrouter_app_name
 
-    async def generate_image(self, prompt: str, cocktail_id: str | None = None) -> Optional[bytes]:
+    async def generate_image(
+        self,
+        prompt: str,
+        cocktail_id: str | None = None,
+        *,
+        generation_mode: str = "default",
+    ) -> Optional[bytes]:
         try:
             if cocktail_id:
                 cached = image_cache.get_cached_image(cocktail_id, prompt)
@@ -39,10 +45,10 @@ class OpenRouterClient:
                     logger.info("Using cached image for %s", cocktail_id)
                     return cached
 
-            result = await self._try_openrouter_image(prompt)
+            result = await self._try_openrouter_image(prompt, generation_mode=generation_mode)
             if not result:
                 logger.info("OpenRouter image generation failed, falling back to OpenAI images.")
-                result = await self._try_openai_dalle(prompt)
+                result = await self._try_openai_dalle(prompt, generation_mode=generation_mode)
 
             if result and cocktail_id:
                 image_cache.save_to_cache(cocktail_id, prompt, result)
@@ -52,17 +58,14 @@ class OpenRouterClient:
             logger.error("Image generation failed: %s", error)
             return None
 
-    async def _try_openrouter_image(self, prompt: str) -> Optional[bytes]:
+    async def _try_openrouter_image(self, prompt: str, *, generation_mode: str = "default") -> Optional[bytes]:
         if "gemini" in self.model.lower():
-            return await self._try_gemini_image(self._create_bar_prompt(prompt))
+            return await self._try_gemini_image(self._create_bar_prompt(prompt, generation_mode=generation_mode))
 
         payload = {
             "model": self.model,
-            "prompt": self._create_bar_prompt(prompt),
-            "negative_prompt": (
-                "whipped cream, foam, toppings, garnish overload, decorations, herbs, "
-                "multiple drinks, extra glasses, distorted layers"
-            ),
+            "prompt": self._create_bar_prompt(prompt, generation_mode=generation_mode),
+            "negative_prompt": self._build_negative_prompt(generation_mode),
             "n": 1,
             "size": "1024x1024",
         }
@@ -117,11 +120,11 @@ class OpenRouterClient:
             logger.warning("Gemini image generation failed: %s", error)
             return None
 
-    async def _try_openai_dalle(self, prompt: str) -> Optional[bytes]:
+    async def _try_openai_dalle(self, prompt: str, *, generation_mode: str = "default") -> Optional[bytes]:
         try:
             from services.openai_client import openai_client
 
-            refined_prompt = self._create_bar_prompt(prompt)
+            refined_prompt = self._create_bar_prompt(prompt, generation_mode=generation_mode)
             response = await openai_client.client.images.generate(
                 model="dall-e-3",
                 prompt=refined_prompt[:1000],
@@ -135,15 +138,39 @@ class OpenRouterClient:
             logger.error("OpenAI image fallback failed: %s", error)
             return None
 
-    def _create_bar_prompt(self, user_prompt: str) -> str:
+    def _create_bar_prompt(self, user_prompt: str, *, generation_mode: str = "default") -> str:
+        layered_suffix = (
+            " Strict layered shot rendering mode: follow the requested number and order of layers exactly. "
+            "Show a side profile of a single shot glass, preserve only the specified layers, "
+            "and do not invent extra bands, foam caps, toppings, or duplicate glasses."
+        )
+
         if "Professional cocktail photography" in user_prompt:
+            if generation_mode == "layered_shot":
+                return user_prompt + layered_suffix
             return user_prompt
 
-        return (
+        prompt = (
             "Generate a realistic cocktail image with professional bar presentation, "
             "appropriate glassware, clean garnish, elegant background, realistic lighting, "
             "single drink in frame, no text. User request: "
             f"{user_prompt}"
+        )
+        if generation_mode == "layered_shot":
+            prompt += layered_suffix
+        return prompt
+
+    def _build_negative_prompt(self, generation_mode: str) -> str:
+        base = (
+            "whipped cream, foam, toppings, garnish overload, decorations, herbs, "
+            "multiple drinks, extra glasses, distorted layers"
+        )
+        if generation_mode != "layered_shot":
+            return base
+
+        return (
+            f"{base}, extra layer, fourth layer, repeated bands, mixed gradient, merged layers, "
+            "wrong layer order, top foam cap, duplicate shot"
         )
 
     async def _download_image(self, image_url: str | None) -> Optional[bytes]:
