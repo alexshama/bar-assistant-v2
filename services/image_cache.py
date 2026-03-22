@@ -15,6 +15,8 @@ logger = logging.getLogger(__name__)
 
 
 class ImageCache:
+    CACHE_VERSION = "v2"
+
     def __init__(self, cache_dir: Path | str | None = None) -> None:
         self.cache_dir = Path(cache_dir) if cache_dir else settings.image_cache_path
         self.cache_dir.mkdir(parents=True, exist_ok=True)
@@ -22,29 +24,10 @@ class ImageCache:
 
     def _get_cache_key(self, cocktail_id: str, prompt: str) -> str:
         normalized_id = cocktail_id.upper().replace("COCKTAIL_", "").replace("_", "-")
-        special_cocktails = {"045-B-52", "008-MARGARITA", "050-SINGAPORE-SLING"}
-
-        if any(item in normalized_id for item in special_cocktails):
-            return f"{cocktail_id}_standard"
-
-        key_elements: list[str] = []
-        prompt_lower = prompt.lower()
-
-        for color in ("red", "pink", "golden", "amber", "clear", "green", "brown"):
-            if color in prompt_lower:
-                key_elements.append(color)
-                break
-
-        for glass in ("rocks", "martini", "coupe", "highball", "shot"):
-            if glass in prompt_lower:
-                key_elements.append(glass)
-                break
-
-        prompt_hash = "default"
-        if key_elements:
-            elements_str = "_".join(sorted(key_elements))
-            prompt_hash = hashlib.md5(elements_str.encode("utf-8")).hexdigest()[:6]
-
+        normalized_prompt = " ".join(prompt.lower().split())
+        prompt_hash = hashlib.md5(
+            f"{self.CACHE_VERSION}:{normalized_id}:{normalized_prompt}".encode("utf-8")
+        ).hexdigest()[:12]
         return f"{cocktail_id}_{prompt_hash}"
 
     def _find_cache_file(self, cache_key: str) -> Optional[Path]:
