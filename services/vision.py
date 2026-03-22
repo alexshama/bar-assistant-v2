@@ -1,67 +1,40 @@
 """
-Сервис анализа изображений через OpenAI Vision
+Vision helpers built on top of OpenAI.
 """
+
+from __future__ import annotations
 
 import logging
 from typing import Optional
+
 from services.openai_client import openai_client
 
 logger = logging.getLogger(__name__)
 
 
 async def analyze_image(image_bytes: bytes, prompt: str) -> Optional[str]:
-    """Анализ изображения через OpenAI Vision API"""
-    
     try:
-        # Формируем промпт для анализа как бармен-эксперт
-        bar_prompt = f"""
-        Ты опытный бармен и эксперт по напиткам. Проанализируй это изображение и ответь на русском языке.
-        
-        {prompt}
-        
-        Если это коктейль или напиток:
-        - Определи название напитка
-        - Опиши внешний вид и подачу
-        - Укажи тип стекла/бокала
-        - Отметь гарниры и декор
-        - Оцени качество подачи
-        
-        Если это не напиток, кратко опиши что изображено.
-        """
-        
-        result = await openai_client.vision(image_bytes, bar_prompt)
-        
-        if result:
-            logger.info(f"Изображение проанализировано: {result[:100]}...")
-            return result
-        else:
-            logger.error("Не удалось проанализировать изображение")
-            return None
-            
-    except Exception as e:
-        logger.error(f"Ошибка при анализе изображения: {e}")
+        bar_prompt = (
+            "Ты опытный бармен и эксперт по напиткам. Проанализируй изображение и ответь на русском языке. "
+            "Если это напиток, назови его, опиши подачу, стекло, гарнир и качество сервировки. "
+            "Если это не напиток, кратко опиши содержимое изображения. "
+            f"{prompt}"
+        )
+        return await openai_client.vision(image_bytes, bar_prompt)
+    except Exception as error:
+        logger.error("Image analysis failed: %s", error)
         return None
 
 
 async def identify_drink(image_bytes: bytes) -> Optional[str]:
-    """Специализированная функция для идентификации напитков"""
-    
-    prompt = """
-    Определи что за напиток изображен на фото. 
-    Назови его точное название если можешь определить, 
-    или опиши тип напитка (коктейль, пиво, вино и т.д.).
-    """
-    
-    return await analyze_image(image_bytes, prompt)
+    return await analyze_image(
+        image_bytes,
+        "Определи, какой напиток изображен на фото. Дай точное название, если уверен.",
+    )
 
 
 async def analyze_bar_setup(image_bytes: bytes) -> Optional[str]:
-    """Анализ барной стойки или сетапа"""
-    
-    prompt = """
-    Проанализируй барную стойку или рабочее место бармена на изображении.
-    Опиши оборудование, инструменты, ингредиенты которые видишь.
-    Дай советы по улучшению организации рабочего места если нужно.
-    """
-    
-    return await analyze_image(image_bytes, prompt)
+    return await analyze_image(
+        image_bytes,
+        "Проанализируй барную станцию и дай советы по организации рабочего места.",
+    )

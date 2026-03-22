@@ -1,37 +1,32 @@
 #!/usr/bin/env python3
 """
-Telegram Bot "Барный ассистент"
-Точка входа в приложение
+Application entrypoint for the Telegram bot.
 """
+
+from __future__ import annotations
 
 import asyncio
 import logging
+
+from bootstrap import initialize_application
 from bot import create_bot
-from config import settings
+from services.utils import configure_logging
 
-# Настройка логирования
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-
+configure_logging()
 logger = logging.getLogger(__name__)
 
 
-async def main():
-    """Основная функция запуска бота"""
+async def main() -> None:
     try:
-        logger.info("Запуск Telegram бота 'Барный ассистент'...")
-        
-        # Создаем и запускаем бота
+        logger.info("Starting Telegram bot 'Барный ассистент'...")
+
+        await initialize_application()
         bot, dp = create_bot()
-        
-        # Удаляем webhook и запускаем polling
+
         await bot.delete_webhook(drop_pending_updates=True)
         await dp.start_polling(bot)
-        
-    except Exception as e:
-        logger.error(f"Ошибка при запуске бота: {e}")
+    except Exception:
+        logger.exception("Failed to start Telegram bot.")
         raise
 
 

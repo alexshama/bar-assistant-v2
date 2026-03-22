@@ -1,182 +1,166 @@
 """
-Обработчики команд /start, /help, /mode, /reset, /stats, /reindex
+Handlers for user-facing commands.
 """
 
+from __future__ import annotations
+
 import logging
-from aiogram import Router, F
+
+from aiogram import Router
 from aiogram.filters import Command
-from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
+from aiogram.types import Message
 
 from rag.index import rebuild_index
+from rag.query import get_knowledge_stats
+from services.image_cache import image_cache
+from services.runtime_stats import runtime_stats
+from services.user_preferences import user_preferences_store
 
 logger = logging.getLogger(__name__)
 router = Router()
 
-# Хранилище пользовательских настроек
-user_settings = {}
+
+WELCOME_TEXT = """
+🍸 <b>Добро пожаловать в Барный ассистент v2</b>
+
+Я помогаю с:
+• рецептами коктейлей и подачей;
+• теорией по алкоголю, пиву и стилям;
+• рекомендациями и заменами ингредиентов;
+• генерацией изображений коктейлей;
+• голосовыми запросами.
+
+<b>Команды:</b>
+/help - примеры запросов
+/mode - переключить подробный/краткий режим
+/voice - включить или отключить озвучку
+/reset - сбросить контекст и настройки сессии
+/stats - показать runtime-статистику
+/reindex - переиндексировать базу знаний
+""".strip()
+
+
+HELP_TEXT = """
+<b>Примеры запросов</b>
+
+🍹 <b>Рецепты</b>
+• Рецепт Негрони
+• Как приготовить Мохито?
+• Покажи фото Маргариты
+
+🥃 <b>Напитки и теория</b>
+• Что такое виски?
+• Чем отличается IPA от лагера?
+• Как правильно подавать коктейль?
+
+💡 <b>Рекомендации</b>
+• Какой виски лучше предложить вместо бурбона?
+• Посоветуй коктейль с джином
+
+🎤 <b>Голос</b>
+Отправьте голосовое сообщение с любым вопросом.
+
+🛠 <b>Админ-команды</b>
+• /cache_stats
+• /clear_cache
+""".strip()
+
+
+def get_user_settings(user_id: int) -> dict:
+    return user_preferences_store.get(user_id)
 
 
 @router.message(Command("start"))
-async def cmd_start(message: Message):
-    """Команда /start"""
-    welcome_text = """
-🍸 <b>Добро пожаловать в Барный ассистент!</b>
-
-Я помогу вам с:
-• 🍹 Рецептами коктейлей и их приготовлением
-• 🍺 Информацией о пиве и его стилях  
-• 🥃 Знаниями об алкогольных напитках
-• 🖼 Генерацией изображений коктейлей
-• 🎤 Голосовыми запросами (отправьте голосовое сообщение)
-
-<b>Команды:</b>
-/help - примеры вопросов
-/mode - переключение режима ответа
-/voice - включить/выключить озвучку
-/reset - сброс контекста
-/stats - статистика
-/reindex - переиндексация базы знаний
-
-Просто задайте вопрос или попросите рецепт!
-    """
-    
-    await message.answer(welcome_text)
+async def cmd_start(message: Message) -> None:
+    await message.answer(WELCOME_TEXT)
 
 
 @router.message(Command("help"))
-async def cmd_help(message: Message):
-    """Команда /help"""
-    help_text = """
-<b>Примеры вопросов:</b>
-
-🍹 <b>Рецепты коктейлей:</b>
-• "Рецепт Негрони"
-• "Как приготовить Мохито?"
-• "Покажи картинку Маргариты"
-
-🍺 <b>Пиво:</b>
-• "Чем отличается IPA от лагера?"
-• "Какое пиво подать к стейку?"
-
-🥃 <b>Алкоголь:</b>
-• "Разница между виски и бурбоном"
-• "Какой джин лучше для мартини?"
-
-🎤 <b>Голосовые запросы:</b>
-Отправьте голосовое сообщение с вопросом
-
-🖼 <b>Изображения:</b>
-• "Сгенерируй картинку Космополитена"
-• "Покажи как подавать Олд Фэшн"
-
-⚙️ <b>Административные команды:</b>
-• /cache_stats - статистика кэша изображений
-• /clear_cache - очистить кэш (только админ)
-
-💾 <i>Изображения кэшируются для экономии API вызовов!</i>
-    """
-    
-    await message.answer(help_text)
+async def cmd_help(message: Message) -> None:
+    await message.answer(HELP_TEXT)
 
 
 @router.message(Command("mode"))
-async def cmd_mode(message: Message):
-    """Переключение режима ответа"""
+async def cmd_mode(message: Message) -> None:
     user_id = message.from_user.id
-    
-    if user_id not in user_settings:
-        user_settings[user_id] = {"mode": "подробно", "voice_enabled": False}
-    
-    current_mode = user_settings[user_id]["mode"]
-    new_mode = "кратко" if current_mode == "подробно" else "подробно"
-    user_settings[user_id]["mode"] = new_mode
-    
+    current = user_preferences_store.get(user_id)
+    new_mode = "кратко" if current["mode"] == "подробно" else "подробно"
+    user_preferences_store.update(user_id, mode=new_mode)
     await message.answer(f"Режим ответа изменен на: <b>{new_mode}</b>")
 
 
 @router.message(Command("voice"))
-async def cmd_voice(message: Message):
-    """Включение/выключение озвучки"""
+async def cmd_voice(message: Message) -> None:
     user_id = message.from_user.id
-    
-    if user_id not in user_settings:
-        user_settings[user_id] = {"mode": "подробно", "voice_enabled": False}
-    
-    # Парсим аргумент команды
-    args = message.text.split()[1:] if len(message.text.split()) > 1 else []
-    
-    if args and args[0].lower() in ["on", "вкл", "включить"]:
-        user_settings[user_id]["voice_enabled"] = True
+    current = user_preferences_store.get(user_id)
+    args = message.text.split()[1:] if message.text else []
+
+    if args and args[0].lower() in {"on", "вкл", "включить"}:
+        user_preferences_store.update(user_id, voice_enabled=True)
         await message.answer("🔊 Озвучка ответов <b>включена</b>")
-    elif args and args[0].lower() in ["off", "выкл", "выключить"]:
-        user_settings[user_id]["voice_enabled"] = False
+        return
+
+    if args and args[0].lower() in {"off", "выкл", "выключить"}:
+        user_preferences_store.update(user_id, voice_enabled=False)
         await message.answer("🔇 Озвучка ответов <b>выключена</b>")
-    else:
-        current_status = "включена" if user_settings[user_id]["voice_enabled"] else "выключена"
-        await message.answer(
-            f"Озвучка сейчас <b>{current_status}</b>\n\n"
-            f"Использование:\n"
-            f"/voice on - включить\n"
-            f"/voice off - выключить"
-        )
+        return
+
+    current_status = "включена" if current["voice_enabled"] else "выключена"
+    await message.answer(
+        f"Озвучка сейчас <b>{current_status}</b>\n\n"
+        "Использование:\n"
+        "/voice on - включить\n"
+        "/voice off - выключить"
+    )
 
 
 @router.message(Command("reset"))
-async def cmd_reset(message: Message, state: FSMContext):
-    """Сброс контекста сессии"""
+async def cmd_reset(message: Message, state: FSMContext) -> None:
     await state.clear()
-    user_id = message.from_user.id
-    
-    if user_id in user_settings:
-        user_settings[user_id] = {"mode": "подробно", "voice_enabled": False}
-    
-    await message.answer("🔄 Контекст сессии сброшен")
+    user_preferences_store.reset(message.from_user.id)
+    await message.answer("🔄 Контекст сессии и настройки ответа сброшены.")
 
 
 @router.message(Command("stats"))
-async def cmd_stats(message: Message):
-    """Статистика бота"""
-    # Здесь можно добавить реальную статистику
-    stats_text = """
-📊 <b>Статистика:</b>
+async def cmd_stats(message: Message) -> None:
+    knowledge_stats = get_knowledge_stats()
+    cache_stats = image_cache.get_cache_stats()
+    total_docs = knowledge_stats.get("total_documents", 0)
+    active_users = user_preferences_store.count_users()
+    cache_files = cache_stats.get("total_files", 0) if "error" not in cache_stats else 0
 
-• Запросов обработано: 42
-• Среднее время ответа: 1.2 сек
-• База знаний: 156 документов
-• Активных пользователей: 8
+    stats_text = (
+        "📊 <b>Runtime-статистика</b>\n\n"
+        f"• Аптайм: {runtime_stats.uptime_seconds()} сек\n"
+        f"• Всего запросов: {runtime_stats.total_requests}\n"
+        f"• Текстовых: {runtime_stats.text_requests}\n"
+        f"• Голосовых: {runtime_stats.voice_requests}\n"
+        f"• Запросов по фото: {runtime_stats.image_requests}\n"
+        f"• Ошибок: {runtime_stats.failed_requests}\n"
+        f"• Документов в индексе: {total_docs}\n"
+        f"• Пользователей с сохраненными настройками: {active_users}\n"
+        f"• Файлов в кэше изображений: {cache_files}"
+    )
 
-🤖 Бот работает стабильно
-    """
-    
     await message.answer(stats_text)
 
 
 @router.message(Command("reindex"))
-async def cmd_reindex(message: Message):
-    """Переиндексация RAG базы знаний"""
+async def cmd_reindex(message: Message) -> None:
     try:
         await message.answer("🔄 Начинаю переиндексацию базы знаний...")
-        
-        # Запускаем переиндексацию
         result = await rebuild_index()
-        
-        if result["success"]:
+
+        if result.get("success"):
             await message.answer(
-                f"✅ Переиндексация завершена!\n\n"
-                f"📄 Обработано документов: {result['documents_count']}\n"
-                f"📝 Создано чанков: {result['chunks_count']}"
+                "✅ Переиндексация завершена.\n\n"
+                f"📄 Обработано файлов: {result['documents_count']}\n"
+                f"🧩 Создано чанков: {result['chunks_count']}"
             )
-        else:
-            await message.answer(f"❌ Ошибка переиндексации: {result['error']}")
-            
-    except Exception as e:
-        logger.error(f"Ошибка при переиндексации: {e}")
-        await message.answer("❌ Произошла ошибка при переиндексации")
+            return
 
-
-def get_user_settings(user_id: int) -> dict:
-    """Получить настройки пользователя"""
-    if user_id not in user_settings:
-        user_settings[user_id] = {"mode": "подробно", "voice_enabled": False}
-    return user_settings[user_id]
+        await message.answer(f"❌ Ошибка переиндексации: {result.get('error', 'неизвестная ошибка')}")
+    except Exception:
+        logger.exception("Failed to rebuild knowledge index.")
+        await message.answer("❌ Произошла ошибка при переиндексации базы знаний.")

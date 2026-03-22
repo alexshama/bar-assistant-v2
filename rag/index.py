@@ -1,116 +1,87 @@
 """
-Индексация документов (упрощенная версия без ChromaDB)
+Lightweight JSON index builder for RAG documents.
 """
 
-import os
-import logging
-import asyncio
-import json
-from typing import List, Dict, Any, Optional
+from __future__ import annotations
 
-from rag.loader import document_loader
-from services.openai_client import openai_client
+import json
+import logging
+from pathlib import Path
+from typing import Any
+
 from config import settings
+from rag.loader import document_loader
 
 logger = logging.getLogger(__name__)
 
 
 class DocumentIndexer:
-    """Индексатор документов (упрощенная версия)"""
-    
-    def __init__(self):
-        self.index_path = os.path.join(settings.chroma_db_path, "simple_index.json")
-        self.documents_data = []
-    
-    def _init_storage(self):
-        """Инициализация хранилища"""
-        os.makedirs(os.path.dirname(self.index_path), exist_ok=True)
-    
-    async def build_index(self) -> Dict[str, Any]:
-        """Построение индекса из документов"""
-        
+    def __init__(self) -> None:
+        self.index_path: Path = settings.simple_index_path
+
+    async def build_index(self) -> dict[str, Any]:
         try:
-            self._init_storage()
-            
-            # Загружаем документы
-            logger.info("Загрузка документов...")
-            documents = document_loader.load_documents()
-            
+            self.index_path = settings.simple_index_path
+            self.index_path.parent.mkdir(parents=True, exist_ok=True)
+            documents = document_loader.__class__(settings.documents_path).load_documents()
+
             if not documents:
                 return {
                     "success": False,
-                    "error": "Не найдено документов для индексации",
+                    "error": "Не найдено документов для индексации.",
                     "documents_count": 0,
-                    "chunks_count": 0
+                    "chunks_count": 0,
                 }
-            
-            # Сохраняем документы в простом формате
-            logger.info("Сохранение документов в индекс...")
-            self.documents_data = documents
-            
-            # Сохраняем в файл
-            with open(self.index_path, 'w', encoding='utf-8') as f:
-                json.dump(documents, f, ensure_ascii=False, indent=2)
-            
-            documents_count = len(set(doc['source_file'] for doc in documents))
-            chunks_count = len(documents)
-            
-            logger.info(f"Индекс построен: {documents_count} файлов, {chunks_count} чанков")
-            
+
+            with self.index_path.open("w", encoding="utf-8") as file:
+                json.dump(documents, file, ensure_ascii=False, indent=2)
+
+            source_files = {document["source_file"] for document in documents}
             return {
                 "success": True,
-                "documents_count": documents_count,
-                "chunks_count": chunks_count
+                "documents_count": len(source_files),
+                "chunks_count": len(documents),
             }
-            
-        except Exception as e:
-            logger.error(f"Ошибка при построении индекса: {e}")
+        except Exception as error:
+            logger.error("Failed to build knowledge index: %s", error)
             return {
                 "success": False,
-                "error": str(e),
+                "error": str(error),
                 "documents_count": 0,
-                "chunks_count": 0
+                "chunks_count": 0,
             }
-    
-    def get_collection_info(self) -> Dict[str, Any]:
-        """Получение информации о коллекции"""
-        
+
+    def get_collection_info(self) -> dict[str, Any]:
         try:
-            if os.path.exists(self.index_path):
-                with open(self.index_path, 'r', encoding='utf-8') as f:
-                    documents = json.load(f)
-                
+            self.index_path = settings.simple_index_path
+            if not self.index_path.exists():
                 return {
                     "success": True,
                     "collection_name": "simple_index",
-                    "documents_count": len(documents),
-                    "index_path": self.index_path
-                }
-            else:
-                return {
-                    "success": True,
-                    "collection_name": "simple_index", 
                     "documents_count": 0,
-                    "index_path": self.index_path
+                    "index_path": str(self.index_path),
                 }
-            
-        except Exception as e:
-            logger.error(f"Ошибка при получении информации об индексе: {e}")
+
+            with self.index_path.open("r", encoding="utf-8") as file:
+                documents = json.load(file)
+
             return {
-                "success": False,
-                "error": str(e)
+                "success": True,
+                "collection_name": "simple_index",
+                "documents_count": len(documents),
+                "index_path": str(self.index_path),
             }
+        except Exception as error:
+            logger.error("Failed to inspect knowledge index: %s", error)
+            return {"success": False, "error": str(error)}
 
 
-# Глобальный экземпляр индексатора
 document_indexer = DocumentIndexer()
 
 
-async def rebuild_index() -> Dict[str, Any]:
-    """Функция для перестроения индекса"""
+async def rebuild_index() -> dict[str, Any]:
     return await document_indexer.build_index()
 
 
-async def get_index_info() -> Dict[str, Any]:
-    """Функция для получения информации об индексе"""
+async def get_index_info() -> dict[str, Any]:
     return document_indexer.get_collection_info()

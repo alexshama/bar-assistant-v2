@@ -1,381 +1,275 @@
 """
-Поиск по базе знаний RAG (упрощенная версия)
+Query layer for the lightweight knowledge base.
 """
 
-import logging
-import json
-import os
-from typing import List, Dict, Any, Optional
+from __future__ import annotations
 
-from services.openai_client import openai_client
+import json
+import logging
+import re
+from pathlib import Path
+from typing import Any, Optional
+
 from config import settings
 
 logger = logging.getLogger(__name__)
 
 
 class KnowledgeBaseQuery:
-    """Класс для поиска по базе знаний (упрощенная версия)"""
-    
-    def __init__(self):
-        self.index_path = os.path.join(settings.chroma_db_path, "simple_index.json")
-        self.documents = []
-    
-    def _load_documents(self):
-        """Загрузка документов из индекса"""
-        
+    def __init__(self) -> None:
+        self.index_path: Path = settings.simple_index_path
+        self.documents: list[dict[str, Any]] = []
+
+    def _load_documents(self) -> None:
         try:
-            if os.path.exists(self.index_path):
-                with open(self.index_path, 'r', encoding='utf-8') as f:
-                    self.documents = json.load(f)
-            else:
-                logger.warning(f"Индекс не найден: {self.index_path}")
+            self.index_path = settings.simple_index_path
+            if not self.index_path.exists():
                 self.documents = []
-                
-        except Exception as e:
-            logger.error(f"Ошибка при загрузке индекса: {e}")
+                return
+
+            with self.index_path.open("r", encoding="utf-8") as file:
+                self.documents = json.load(file)
+        except Exception as error:
+            logger.error("Failed to load knowledge index: %s", error)
             self.documents = []
-    
+
     async def search(
-        self, 
-        query: str, 
-        top_k: int = None,
-        score_threshold: float = None
-    ) -> Optional[Dict[str, Any]]:
-        """Поиск по запросу (упрощенная версия с текстовым поиском)"""
-        
-        try:
-            top_k = top_k or settings.rag_top_k
-            
-            self._load_documents()
-            
-            if not self.documents:
-                logger.info("Документы не найдены в индексе")
-                return {
-                    "documents": [],
-                    "sources": [],
-                    "query": query
-                }
-            
-            # Простой текстовый поиск по ключевым словам
-            query_lower = query.lower()
-            scored_results = []
-            
-            for doc in self.documents:
-                score = self._calculate_text_score(query_lower, doc)
-                
-                if score > 0:
-                    scored_results.append({
-                        "document": doc['text'],
-                        "metadata": doc,
-                        "score": score
-                    })
-            
-            # Сортируем по релевантности
-            scored_results.sort(key=lambda x: x['score'], reverse=True)
-            
-            # Ограничиваем количество результатов
-            scored_results = scored_results[:top_k]
-            
-            if not scored_results:
-                logger.info("Релевантные документы не найдены")
-                return {
-                    "documents": [],
-                    "sources": [],
-                    "query": query
-                }
-            
-            # Формируем ответ
-            response_documents = [result['document'] for result in scored_results]
-            response_sources = [
+        self,
+        query: str,
+        top_k: int | None = None,
+        score_threshold: float | None = None,
+    ) -> Optional[dict[str, Any]]:
+        top_k = top_k or settings.rag_top_k
+        threshold = score_threshold if score_threshold is not None else 0.0
+
+        self._load_documents()
+        if not self.documents:
+            return {"documents": [], "sources": [], "query": query}
+
+        normalized_query = self._normalize_query(query)
+        scored_results: list[dict[str, Any]] = []
+
+        for document in self.documents:
+            score = self._calculate_text_score(normalized_query, document)
+            if score <= threshold:
+                continue
+            scored_results.append(
                 {
-                    "chunk_id": result['metadata'].get('chunk_id', 'unknown'),
-                    "source_file": result['metadata'].get('source_file', 'unknown'),
-                    "tags": result['metadata'].get('tags', []),
-                    "keywords": result['metadata'].get('keywords', []),
-                    "score": result['score'],
-                    "distance": 1 - result['score']  # Имитируем distance
+                    "document": document["text"],
+                    "metadata": document,
+                    "score": score,
                 }
-                for result in scored_results
-            ]
-            
-            logger.info(f"Найдено {len(response_documents)} релевантных документов")
-            
-            return {
-                "documents": response_documents,
-                "sources": response_sources,
-                "query": query
-            }
-            
-        except Exception as e:
-            logger.error(f"Ошибка при поиске: {e}")
-            return None
-    
-    def _calculate_text_score(self, query: str, document: Dict[str, Any]) -> float:
-        """Вычисление релевантности документа к запросу"""
-        
-        score = 0.0
-        
-        # Поиск в тексте документа
-        text_lower = document['text'].lower()
-        chunk_id_lower = document.get('chunk_id', '').lower()
-        
-        # Обрабатываем склонения в запросе
-        query_normalized = self._normalize_query(query)
-        
-        # Разбиваем запрос на слова
-        query_words = query_normalized.split()
-        query_lower = query_normalized.lower()
-        
-        # Специальная обработка для точных названий напитков
-        exact_matches = {
-            # Коктейли
-            'b 52': 'b-52',
-            'б 52': 'b-52', 
-            'негрони': 'negroni',
-            'мартини': 'martini',
-            'мохито': 'mojito',
-            'маргарита': 'margarita',
-            'годфазер': 'godfather',
-            'манхэттен': 'manhattan',
-            'космополитен': 'cosmopolitan',
-            'дайкири': 'daiquiri',
-            'сингапур слинг': 'singapore_sling',
-            # Спиртные напитки
-            'виски': 'whisky',
-            'whisky': 'whisky',
-            'whiskey': 'whisky',
-            'водка': 'vodka',
-            'джин': 'gin',
-            'ром': 'rum',
-            'коньяк': 'cognac',
-            'бренди': 'brandy',
-            # Пиво
-            'пилснер': 'pilsner',
-            'лагер': 'lager',
-            'эль': 'ale'
+            )
+
+        scored_results.sort(key=lambda item: item["score"], reverse=True)
+        scored_results = scored_results[:top_k]
+
+        return {
+            "documents": [self._build_response_document(item["document"], item["metadata"]) for item in scored_results],
+            "sources": [
+                {
+                    "chunk_id": item["metadata"].get("chunk_id", "unknown"),
+                    "source_file": item["metadata"].get("source_file", "unknown"),
+                    "tags": item["metadata"].get("tags", []),
+                    "keywords": item["metadata"].get("keywords", []),
+                    "score": item["score"],
+                    "distance": max(0.0, 1 - item["score"]),
+                }
+                for item in scored_results
+            ],
+            "query": query,
         }
-        
-        # Проверяем точные совпадения названий напитков
+
+    def _build_response_document(self, document_text: str, metadata: dict[str, Any]) -> str:
+        chunk_id = metadata.get("chunk_id", "")
+        humanized_title = chunk_id.replace("_", " ").strip()
+        translations = {
+            "negroni": "негрони",
+            "martini": "мартини",
+            "mojito": "мохито",
+            "margarita": "маргарита",
+            "daiquiri": "дайкири",
+            "cosmopolitan": "космополитен",
+            "manhattan": "манхэттен",
+            "whisky": "виски",
+            "vodka": "водка",
+            "gin": "джин",
+            "rum": "ром",
+            "lager": "лагер",
+            "ale": "эль",
+        }
+        for english, russian in translations.items():
+            humanized_title = re.sub(rf"\b{english}\b", russian, humanized_title, flags=re.IGNORECASE)
+        if not humanized_title:
+            return document_text
+
+        first_token = humanized_title.split()[0].lower()
+        if first_token and first_token in document_text.lower():
+            return document_text
+
+        return f"{humanized_title}. {document_text}"
+
+    def _calculate_text_score(self, query: str, document: dict[str, Any]) -> float:
+        score = 0.0
+        text_lower = document["text"].lower()
+        chunk_id_lower = document.get("chunk_id", "").lower()
+        query_words = query.split()
+
+        exact_matches = {
+            "b 52": "b-52",
+            "негрони": "negroni",
+            "мартини": "martini",
+            "мохито": "mojito",
+            "маргарита": "margarita",
+            "годфазер": "godfather",
+            "манхэттен": "manhattan",
+            "космополитен": "cosmopolitan",
+            "дайкири": "daiquiri",
+            "сингапур слинг": "singapore_sling",
+            "виски": "whisky",
+            "whisky": "whisky",
+            "whiskey": "whisky",
+            "водка": "vodka",
+            "джин": "gin",
+            "ром": "rum",
+            "коньяк": "cognac",
+            "бренди": "brandy",
+            "пилснер": "pilsner",
+            "лагер": "lager",
+            "эль": "ale",
+        }
+
         for query_name, standard_name in exact_matches.items():
-            if query_name in query_lower:
-                # Ищем в ID чанка
+            if query_name in query:
                 if standard_name in chunk_id_lower:
-                    score += 10.0  # Очень высокий приоритет для точного совпадения в ID
-                
-                # Ищем в ключевых словах
-                for keyword in document.get('keywords', []):
-                    if standard_name in keyword.lower() or query_name in keyword.lower():
-                        score += 5.0
-                
-                # Ищем в тексте (для определений типа "что такое виски")
+                    score += 10.0
                 if standard_name in text_lower:
                     score += 3.0
-        
-        # Обычный поиск по словам
+                for keyword in document.get("keywords", []):
+                    if standard_name in keyword.lower() or query_name in keyword.lower():
+                        score += 5.0
+
         for word in query_words:
-            if len(word) < 2:  # Пропускаем очень короткие слова
+            if len(word) < 2:
                 continue
-                
-            word_lower = word.lower()
-            
-            # Точное совпадение в ID чанка (высокий приоритет)
-            if word_lower in chunk_id_lower:
+            if word in chunk_id_lower:
                 score += 3.0
-            
-            # Точное совпадение в тексте
-            if word_lower in text_lower:
+            if word in text_lower:
                 score += 1.0
-            
-            # Совпадение в ключевых словах (больший вес)
-            for keyword in document.get('keywords', []):
-                if word_lower in keyword.lower():
+            for keyword in document.get("keywords", []):
+                if word in keyword.lower():
                     score += 2.0
-            
-            # Совпадение в тегах
-            for tag in document.get('tags', []):
-                if word_lower in tag.lower():
+            for tag in document.get("tags", []):
+                if word in tag.lower():
                     score += 1.5
-        
-        # Специальная обработка для вопросов "что такое"
-        if any(phrase in query_lower for phrase in ['что такое', 'что это', 'определение']):
-            # Приоритет определениям (DEF в ID)
-            if '_DEF_' in chunk_id_lower:
-                score += 15.0  # Очень высокий приоритет для определений
-            
-            # Приоритет тегам basics, definition
-            if 'basics' in document.get('tags', []) or 'definition' in document.get('tags', []):
+
+        if any(phrase in query for phrase in ("что такое", "что это", "определение")):
+            if "_def_" in chunk_id_lower:
+                score += 15.0
+            if any(tag in {"basics", "definition"} for tag in document.get("tags", [])):
                 score += 10.0
-            
-            # Снижаем приоритет коктейлям при вопросах "что такое"
-            if 'cocktail' in document.get('tags', []):
+            if "cocktail" in document.get("tags", []):
                 score -= 5.0
-        
-        # Бонус за тип коктейля в тегах (только для рецептов)
-        elif 'cocktail' in document.get('tags', []) and any(word in query_lower for word in ['коктейль', 'рецепт', 'покажи', 'сделать']):
+        elif "cocktail" in document.get("tags", []) and any(
+            word in query for word in ("коктейль", "рецепт", "покажи", "сделать")
+        ):
             score += 1.0
-        
+
         return score
-    
+
     def _normalize_query(self, query: str) -> str:
-        """Нормализация запроса - приведение склонений к базовой форме и извлечение ключевых слов"""
-        
-        query_lower = query.lower().strip()
-        
-        # Убираем знаки препинания
-        import re
-        query_lower = re.sub(r'[^\w\s-]', '', query_lower)
-        
-        # Заменяем дефисы на пробелы для составных названий
-        query_lower = query_lower.replace('-', ' ')
-        
-        # Словарь склонений для коктейлей
-        cocktail_forms = {
-            'маргариты': 'маргарита',
-            'негрони': 'негрони', 
-            'мартини': 'мартини',
-            'мохито': 'мохито',
-            'дайкири': 'дайкири',
-            'манхэттена': 'манхэттен',
-            'космополитена': 'космополитен',
-            'годфазера': 'годфазер',
-            'годфазер': 'годфазер',
-            'сингапур слинг': 'сингапур слинг',
-            'б 52': 'b 52',
-            'б52': 'b 52'
+        query_lower = re.sub(r"[^\w\s-]", "", query.lower().strip()).replace("-", " ")
+        replacements = {
+            "маргариты": "маргарита",
+            "манхэттена": "манхэттен",
+            "космополитена": "космополитен",
+            "годфазера": "годфазер",
+            "б52": "b 52",
+            "б 52": "b 52",
         }
-        
-        # Заменяем склонения на базовые формы
-        for declined_form, base_form in cocktail_forms.items():
-            if declined_form in query_lower:
-                query_lower = query_lower.replace(declined_form, base_form)
-        
-        # Убираем служебные слова для лучшего поиска
-        stop_words = ['как', 'сделать', 'приготовить', 'что', 'такое', 'это', 'покажи', 'фото', 'изображение', 'мне', 'рецепт']
-        
-        # Если это запрос с служебными словами, извлекаем только ключевые
-        if any(word in query_lower for word in ['как сделать', 'как приготовить', 'покажи', 'рецепт']):
-            words = query_lower.split()
-            filtered_words = []
-            for word in words:
-                if word not in stop_words and len(word) > 1:
-                    filtered_words.append(word)
-            
-            if filtered_words:
-                # Возвращаем только ключевые слова без служебных
-                return ' '.join(filtered_words)
-        
+        for source, target in replacements.items():
+            query_lower = query_lower.replace(source, target)
+
+        stop_words = {
+            "как",
+            "сделать",
+            "приготовить",
+            "что",
+            "такое",
+            "это",
+            "покажи",
+            "фото",
+            "изображение",
+            "мне",
+            "рецепт",
+        }
+
+        if any(phrase in query_lower for phrase in ("как сделать", "как приготовить", "покажи", "рецепт")):
+            filtered = [word for word in query_lower.split() if word not in stop_words and len(word) > 1]
+            if filtered:
+                return " ".join(filtered)
+
         return query_lower
-    
-    async def search_by_tags(self, tags: List[str], top_k: int = None) -> Optional[Dict[str, Any]]:
-        """Поиск по тегам"""
-        
-        try:
-            top_k = top_k or settings.rag_top_k
-            self._load_documents()
-            
-            if not self.documents:
-                return {
-                    "documents": [],
-                    "sources": [],
-                    "query": f"tags: {', '.join(tags)}"
-                }
-            
-            # Ищем документы с совпадающими тегами
-            matching_docs = []
-            
-            for doc in self.documents:
-                doc_tags = [tag.lower() for tag in doc.get('tags', [])]
-                
-                # Проверяем пересечение тегов
-                for tag in tags:
-                    if tag.lower() in doc_tags:
-                        matching_docs.append({
-                            "document": doc['text'],
-                            "metadata": doc,
-                            "score": 1.0
-                        })
-                        break  # Достаточно одного совпадения
-            
-            # Ограничиваем количество результатов
-            matching_docs = matching_docs[:top_k]
-            
-            response_documents = [result['document'] for result in matching_docs]
-            response_sources = [
+
+    async def search_by_tags(self, tags: list[str], top_k: int | None = None) -> Optional[dict[str, Any]]:
+        top_k = top_k or settings.rag_top_k
+        self._load_documents()
+
+        matching = []
+        for document in self.documents:
+            doc_tags = [tag.lower() for tag in document.get("tags", [])]
+            if any(tag.lower() in doc_tags for tag in tags):
+                matching.append(
+                    {
+                        "document": document["text"],
+                        "metadata": document,
+                        "score": 1.0,
+                    }
+                )
+
+        matching = matching[:top_k]
+        return {
+            "documents": [item["document"] for item in matching],
+            "sources": [
                 {
-                    "chunk_id": result['metadata'].get('chunk_id', 'unknown'),
-                    "source_file": result['metadata'].get('source_file', 'unknown'),
-                    "tags": result['metadata'].get('tags', []),
-                    "keywords": result['metadata'].get('keywords', []),
-                    "score": result['score'],
-                    "distance": 0.0
+                    "chunk_id": item["metadata"].get("chunk_id", "unknown"),
+                    "source_file": item["metadata"].get("source_file", "unknown"),
+                    "tags": item["metadata"].get("tags", []),
+                    "keywords": item["metadata"].get("keywords", []),
+                    "score": item["score"],
+                    "distance": 0.0,
                 }
-                for result in matching_docs
-            ]
-            
-            return {
-                "documents": response_documents,
-                "sources": response_sources,
-                "query": f"tags: {', '.join(tags)}"
-            }
-            
-        except Exception as e:
-            logger.error(f"Ошибка при поиске по тегам: {e}")
-            return None
-    
-    def get_stats(self) -> Dict[str, Any]:
-        """Получение статистики базы знаний"""
-        
-        try:
-            self._load_documents()
-            
-            if not self.documents:
-                return {
-                    "total_documents": 0,
-                    "source_files": [],
-                    "tags": [],
-                    "index_path": self.index_path
-                }
-            
-            source_files = set()
-            all_tags = set()
-            
-            for doc in self.documents:
-                if doc.get('source_file'):
-                    source_files.add(doc['source_file'])
-                
-                for tag in doc.get('tags', []):
-                    all_tags.add(tag)
-            
-            return {
-                "total_documents": len(self.documents),
-                "source_files": list(source_files),
-                "tags": list(all_tags),
-                "index_path": self.index_path
-            }
-            
-        except Exception as e:
-            logger.error(f"Ошибка при получении статистики: {e}")
-            return {"error": str(e)}
+                for item in matching
+            ],
+            "query": f"tags: {', '.join(tags)}",
+        }
+
+    def get_stats(self) -> dict[str, Any]:
+        self._load_documents()
+        source_files = sorted({document.get("source_file", "") for document in self.documents if document.get("source_file")})
+        tags = sorted({tag for document in self.documents for tag in document.get("tags", [])})
+        return {
+            "total_documents": len(self.documents),
+            "source_files": source_files,
+            "tags": tags,
+            "index_path": str(self.index_path),
+        }
 
 
-# Глобальный экземпляр для поиска
 knowledge_query = KnowledgeBaseQuery()
 
 
 async def query_knowledge_base(
-    query: str, 
-    top_k: int = None,
-    score_threshold: float = None
-) -> Optional[Dict[str, Any]]:
-    """Функция-обертка для поиска по базе знаний"""
+    query: str,
+    top_k: int | None = None,
+    score_threshold: float | None = None,
+) -> Optional[dict[str, Any]]:
     return await knowledge_query.search(query, top_k, score_threshold)
 
 
-async def search_by_tags(tags: List[str], top_k: int = None) -> Optional[Dict[str, Any]]:
-    """Функция-обертка для поиска по тегам"""
+async def search_by_tags(tags: list[str], top_k: int | None = None) -> Optional[dict[str, Any]]:
     return await knowledge_query.search_by_tags(tags, top_k)
 
 
-def get_knowledge_stats() -> Dict[str, Any]:
-    """Функция-обертка для получения статистики"""
+def get_knowledge_stats() -> dict[str, Any]:
     return knowledge_query.get_stats()
